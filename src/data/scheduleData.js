@@ -10,7 +10,7 @@ export const scheduleData = [
             "day": "Monday",
             "type": "Active",
             "task": "Enroll in Clay University's Clay 101: GTM Automation (60 mins).",
-            "description": "Watch and build along with intro modules.",
+            "description": "Watch and build along.",
             "instructions": [
               "Intro to Clay 101: FETE & Jigsaw (10m)",
               "Your First GTM Use Case (9m)",
@@ -23,7 +23,7 @@ export const scheduleData = [
             "day": "Tuesday",
             "type": "Active",
             "task": "Continue Clay 101 (60 mins).",
-            "description": "Enrichment tasks.",
+            "description": "Enrichment modules.",
             "instructions": [
               "Finding Jobs Source + Enrichment (5m)",
               "Finding Businesses with Google Maps (7m)",
@@ -37,7 +37,7 @@ export const scheduleData = [
             "day": "Wednesday",
             "type": "Active",
             "task": "Finish Clay 101 (60 mins).",
-            "description": "Transform and clean data.",
+            "description": "Transform and export.",
             "instructions": [
               "(Transform) Clean & Normalize Your Data (6m)",
               "Transforming with AI Formulas (7m)",
@@ -47,21 +47,22 @@ export const scheduleData = [
           {
             "day": "Thursday",
             "type": "Active",
-            "task": "Movemates Assignment 1 Execution (60 mins).",
-            "description": "Setup Movemates sandbox table.",
+            "task": "Ritu's Project 01: The ICP Finder (60 mins).",
+            "description": "Build your first verifiable portfolio project.",
             "instructions": [
-              "Step 1: Open a new blank Clay table.",
-              "Step 2: Add the 'Find Businesses with Google Maps' integration column.",
-              "Step 3: Type the search query 'Independent Estate Agents' and set the location to 'East London, UK'. Run the integration to pull 50 local agencies.",
-              "Step 4: Add a 'Find Contacts at Company' column. Set the job title filter to include 'Branch Manager' OR 'Lettings Director'.",
-              "Step 5: Add a 'Find Work Email' integration column and run it on the contacts you just found to get their email addresses."
+              "Step 1: Pick a real B2B SaaS company you follow. Write ONE sentence describing their ideal customer.",
+              "Step 2: Open Clay and click 'New Table' -> 'Find Companies'.",
+              "Step 3: Type your 1-sentence ICP description into Clay's AI Sculptor search bar.",
+              "Step 4: Review the filters Clay auto-filled (Industry, HQ, Employee Count). Adjust filters until you have a few dozen results.",
+              "Step 5: Set your row limit to exactly 20 and click 'Add to Table'.",
+              "Step 6: Confirm you have these exact columns: Company Name, Domain, Employee Count, LinkedIn URL. Name the table '[Company] ICP - '."
             ]
           },
           {
             "day": "Friday",
             "type": "Passive",
             "task": "Watch Loom videos Part 1 & 2 from Ritu Maurya's Starter Kit (30 mins).",
-            "description": "Learn from Starter Kit.",
+            "description": "Passive theory absorption.",
             "instructions": [
               "https://www.loom.com/share/c7616ee7ea3746f084233156b61e943f",
               "https://www.loom.com/share/816c17ea7c2547949fd1b80fd24f298d"
@@ -73,8 +74,7 @@ export const scheduleData = [
             "task": "Study foundation models",
             "description": "Focus on IITJ classes and Databricks Gen AI course.",
             "instructions": [
-              "Study foundation models and basic prompt engineering.",
-              "Mentally map how LLMs can be utilized to summarize complex CRM data."
+              "Study foundation models and basic prompt engineering."
             ]
           }
         ]
@@ -96,44 +96,46 @@ export const scheduleData = [
           {
             "day": "Tuesday",
             "type": "Active",
-            "task": "Movemates Sandbox - B2B ICP & Messaging (60 mins).",
-            "description": "Define the B2B ICP.",
+            "task": "Ritu's Project 02: The Signal Stacker (60 mins).",
+            "description": "Stacking intent signals in Clay.",
             "instructions": [
-              "Step 1: Open a blank Google Doc to map your Ideal Customer Profile (ICP). Write down the firmographics: Independent Estate Agencies in East London with 5-20 employees.",
-              "Step 2: Write down the pain point: They have clients who need reliable movers, but recommending a bad, cheap mover ruins the estate agent's reputation.",
-              "Step 3: Draft Email 1. Write a short opening offering a \u00a350-\u00a3150 referral commission to partner with Movemates.",
-              "Step 4: Draft Email 2. Focus strictly on your 'white-glove' promise and fully-insured status to ease their reputation fears."
+              "Step 1: Open your Project 01 table. Click Add Column -> 'Find technology stack' (BuiltWith). Pass the company domain and run it to find competitors' tools.",
+              "Step 2: Add Column -> 'Find active job openings'. Set a keyword showing intent (e.g., 'CRM' or 'Salesforce') and a 30-day lookback.",
+              "Step 3: Add Column -> 'Find company headcount growth'. Pass the LinkedIn URL with a 6-month lookback to get a growth percentage.",
+              "Step 4: Add a 'Formula' column. Write in plain English: 'If percent headcount growth is greater than 20, return 4. If job openings count is greater than 0, return 3. If tech stack contains [keyword], return 3. Sum these and return the total.'",
+              "Step 5: Click Generate Formula. Sort your table by this new Score column descending to find your top 3-5 hot accounts."
             ]
           },
           {
             "day": "Wednesday",
             "type": "Active",
-            "task": "Movemates Assignment 2 Execution (90 mins).",
-            "description": "Dynamic cold emails.",
+            "task": "Ritu's Project 03: The Email Machine (Part 1) (60 mins).",
+            "description": "Contact enrichment waterfall.",
             "instructions": [
-              "Step 1: Open your Clay table from Week 1.",
-              "Step 2: Click 'Add Column' and select 'Use AI (Claude/OpenAI)'.",
-              "Step 3: Paste this prompt: 'Using the /Company Name/ column, write a casual, one-sentence opening line acknowledging their local real estate presence in East London and asking if they are open to a \u00a350 referral partnership.'",
-              "Step 4: Run the AI column. Manually read the first 10 outputs. If they sound robotic, tweak the prompt to say 'use a conversational UK business tone' and rerun."
+              "Step 1: Filter your scored table to just your top 3 companies.",
+              "Step 2: Add Column -> 'Find contacts at company'. Pass the LinkedIn URL and set target titles (e.g., 'VP Sales', 'CTO'). Limit to 3 per company.",
+              "Step 3: Click 'Send table data' to push these 9 contacts into a brand new dedicated contact table.",
+              "Step 4: In the new table, add Column -> 'Find work email'. Pass the LinkedIn URL and domain to trigger Clay's waterfall (Hunter, Prospeo, etc.).",
+              "Step 5: Add Column -> 'Verify email'. Filter out all 'invalid' results. Keep only 'valid' or 'catch-all'."
             ]
           },
           {
             "day": "Thursday",
             "type": "Active",
-            "task": "Finalize Assignment 2 (60 mins).",
-            "description": "Record explanation.",
+            "task": "Ritu's Project 03: The Email Machine (Part 2) (60 mins).",
+            "description": "AI Personalization.",
             "instructions": [
-              "Step 1: Download the Loom Chrome extension.",
-              "Step 2: Record your screen showing how your Clay table automatically built a list of local agents and used AI to write the emails.",
-              "Step 3: In the video, explain verbally why targeting estate agents is a smarter GTM strategy for a 2-van fleet than fighting for B2C jobs on shared platforms.",
-              "Step 4: Publish the video on LinkedIn and tag KOLs."
+              "Step 1: Use 'Send Table Data' to pull the company signals (Tech Stack, Job Titles, Growth %) from table 1 into your new contact table.",
+              "Step 2: Add Column -> 'AI Column' (Claude). Write a prompt using Ritu's template: 'Write ONE opening line that addresses {First Name}, references their role OR a company signal, is under 35 words, doesn't start with \"I/Hi/Congrats\", and avoids buzzwords like \"synergy\".'",
+              "Step 3: Run on one row. Read aloud. Edit the prompt if it sounds robotic. When perfect, hit 'Run All'.",
+              "Step 4: Record a Loom video of your tables and post to LinkedIn tagging GTM KOLs."
             ]
           },
           {
             "day": "Friday",
             "type": "Passive",
             "task": "Watch Ritu's Loom Part 3 & 4 (30 mins).",
-            "description": "Complete Starter kit looms.",
+            "description": "Passive theory absorption.",
             "instructions": [
               "Watch Part 3 https://www.loom.com/share/8720fdcad12047bdb91bc93963b95c21",
               "Watch Part 4 https://www.loom.com/share/fa366886598b4bafbb3079d199070ef1"
@@ -158,7 +160,7 @@ export const scheduleData = [
             "day": "Monday",
             "type": "Theory",
             "task": "n8n Level 1: Beginner Course (60 mins).",
-            "description": "Go to docs.n8n.io/courses",
+            "description": "Go to docs.n8n.io/courses.",
             "instructions": [
               "Complete 'Navigating the editor UI' and 'Building a mini-workflow'."
             ]
@@ -184,21 +186,20 @@ export const scheduleData = [
           {
             "day": "Thursday",
             "type": "Active",
-            "task": "Movemates Sandbox - Webhook Receiver (90 mins).",
-            "description": "Custom Webhook receiver.",
+            "task": "Ritu's Offer Project 1: Lead Enrichment (Start) (90 mins).",
+            "description": "Connecting n8n and Clay.",
             "instructions": [
-              "Step 1: Open n8n and create a new workflow.",
-              "Step 2: Add a 'Webhook' node. Set the HTTP Method to 'POST'. Copy the 'Test URL' provided by the node.",
-              "Step 3: Create a blank Google Sheet called 'Movemates Incoming Referrals' with columns for Name, Phone, and Moving Date.",
-              "Step 4: Add a 'Google Sheets' node to your n8n workflow. Connect your Google account, select the 'Append Row' operation, and map the incoming webhook data to your sheet columns.",
-              "Step 5: Add a 'Slack' or 'Gmail' node to automatically send a message to yourself saying: 'New Movemates Referral Received!'"
+              "Step 1: Problem statement: A sales team spends 40 hrs/week manually researching leads.",
+              "Step 2: Open n8n. Add a 'Webhook' trigger node (POST method). This will simulate receiving a raw 'Company Name' from a salesperson.",
+              "Step 3: Open Clay. Create a blank table. Setup a webhook to receive the company name from n8n.",
+              "Step 4: In Clay, use native integrations to build a waterfall that outputs: Decision-maker name, email, LinkedIn, company size, recent funding, tech stack."
             ]
           },
           {
             "day": "Friday",
             "type": "Passive",
             "task": "Nick Saraev's n8n Masterclass (45 mins).",
-            "description": "Start the masterclass.",
+            "description": "Passive theory absorption.",
             "instructions": [
               "Watch the first 45 minutes (Foundations & Automation Logic) (https://youtu.be/2GZ2SNXWK-c?si=OMzVEt4Ziz3S62al)."
             ]
@@ -222,7 +223,7 @@ export const scheduleData = [
             "day": "Monday",
             "type": "Theory",
             "task": "n8n Level 2: Intermediate Course (60 mins).",
-            "description": "Data structures and processing.",
+            "description": "Data structure.",
             "instructions": [
               "Complete 'Understanding the data structure' and 'Processing different data types' (focus on XML and binary data)."
             ]
@@ -248,22 +249,21 @@ export const scheduleData = [
           {
             "day": "Thursday",
             "type": "Active",
-            "task": "Movemates Sandbox - AI Email Routing (90 mins).",
-            "description": "AI Email Labeling Agent.",
+            "task": "Ritu's Offer Project 1: Lead Enrichment (Finish) (90 mins).",
+            "description": "Completing the webhook integration.",
             "instructions": [
-              "Step 1: Create a new n8n workflow. Add an 'Email Read (IMAP)' trigger node to pull unread emails from your inbox.",
-              "Step 2: Add an 'OpenAI/Anthropic' AI node.",
-              "Step 3: In the AI node prompt, write: 'Read this email body. Categorize it as exactly one of these three strings: \"Referral Partner\", \"Office Move\", or \"Spam\".'",
-              "Step 4: Add a 'Switch' node after the AI. Create 3 routing paths based on the AI's string output, proving you can automatically route incoming Movemates inquiries without human sorting."
+              "Step 1: In Clay, add an 'HTTP Request' column at the end of your enrichment table to push the final data payload back out.",
+              "Step 2: In n8n, create a 'Webhook' node to receive that payload from Clay, and attach a 'Slack' or 'Google Sheets' node to log the fully enriched lead.",
+              "Step 3: Record a 3-5 minute Loom video. Script: Explain how this takes manual research from 40 hours a week down to 4 hours. Publish the video as your first major portfolio piece."
             ]
           },
           {
             "day": "Friday",
             "type": "Passive",
             "task": "Nick Saraev's n8n Masterclass (45 mins).",
-            "description": "Next part of masterclass.",
+            "description": "Passive theory absorption.",
             "instructions": [
-              "Watch the next 45 minutes (https://youtu.be/2GZ2SNXWK-c?si=OMzVEt4Ziz3S62al)."
+              "Watch the next 45 minutes of Nick Saraev's n8n Masterclass (https://youtu.be/2GZ2SNXWK-c?si=OMzVEt4Ziz3S62al)."
             ]
           },
           {
@@ -299,13 +299,11 @@ export const scheduleData = [
           {
             "day": "Tuesday",
             "type": "Active",
-            "task": "Movemates Sandbox - Local Context Setup (45 mins).",
-            "description": "CLAUDE.md setup for sandbox.",
+            "task": "Local Context Setup (45 mins).",
+            "description": "CLAUDE.md setup.",
             "instructions": [
-              "Step 1: Open your computer's terminal. Type `mkdir movemates-gtm` to create a new directory. Type `cd movemates-gtm` to enter it.",
-              "Step 2: Create a file named CLAUDE.md.",
-              "Step 3: Open CLAUDE.md in a text editor and write out the Movemates context: 'We are Movemates, a 2-van moving company in London. We target Estate Agents for referrals and small offices (<20 people) for weekend moves. You are acting as our GTM Engineer.' Save the file.",
-              "Step 4: In the terminal, type `claude` to launch the agent inside this context-aware folder."
+              "Watch Nate Herk's 'Master 95% of Claude Code in 28 Mins' (https://www.youtube.com/watch?v=zKBPwDpBfhs).",
+              "Create a local directory for your GTM projects. Write a CLAUDE.md context file detailing your tools (Clay, n8n) and your objective (GTM portfolio building)."
             ]
           },
           {
@@ -315,18 +313,19 @@ export const scheduleData = [
             "description": "Skill building.",
             "instructions": [
               "Finish Nate Herk's video.",
-              "Follow the 6-step skill-building framework (Name, Trigger, Outcome, Dependencies, Step-by-step, Edge cases)."
+              "Follow the 6-step skill-building framework (Name, Trigger, Outcome, Dependencies, Step-by-step, Edge cases) to add a custom skill to your agent."
             ]
           },
           {
             "day": "Thursday",
             "type": "Active",
-            "task": "Movemates Sandbox - CLI Automation (90 mins).",
-            "description": "Python Web Scraping via CLI.",
+            "task": "Ritu's Offer Project 2: Sales Tracker (Start) (90 mins).",
+            "description": "Scraping via CLI.",
             "instructions": [
-              "Step 1: Create a dummy CSV file in your movemates-gtm folder containing 5 links to local London art gallery websites (for our SLA targeting pillar).",
-              "Step 2: Open Claude Code in the terminal and type: 'Read the CSV file. Write a Python script using BeautifulSoup to scrape the \"About Us\" page of each link to find out how long they have been in business.'",
-              "Step 3: Tell Claude Code: 'Execute the Python script you just wrote and save the results into a file called gallery_research.json.'"
+              "Step 1: Problem statement: 'Sales is missing leads because they reach out at the wrong time.'",
+              "Step 2: We need to track 5 triggers: Leadership changes, new funding, job postings, tech stack changes, company growth.",
+              "Step 3: Use Claude Code in your terminal. Prompt it: 'Write a Python script using BeautifulSoup that takes an input URL for a company's \"Careers\" page and scrapes it to detect if they are hiring for \"Sales\" or \"Engineering\" roles.'",
+              "Step 4: Tell Claude Code to run the script and verify it works on a dummy URL."
             ]
           },
           {
@@ -361,7 +360,7 @@ export const scheduleData = [
             "instructions": [
               "Step 1: Go to brave.com and generate a free API key for Brave Search.",
               "Step 2: In your terminal, run the command to install the Brave Search MCP server.",
-              "Step 3: Open Claude Code and type: 'Use the Brave Search tool to find 3 local tech startups in East London that recently announced new funding. Output their names in a markdown table.'"
+              "Step 3: Trigger 2 (New Funding): Open Claude Code and type: 'Use the Brave Search tool to find 5 recent news articles about B2B SaaS companies raising Series A funding. Output their names and funding amounts in a CSV.'"
             ]
           },
           {
@@ -379,23 +378,22 @@ export const scheduleData = [
           {
             "day": "Wednesday",
             "type": "Active",
-            "task": "Movemates Sandbox - CRM Hygiene (60 mins).",
-            "description": "CRM Hygiene.",
+            "task": "Ritu's Offer Project 2 (Cont.) (60 mins).",
+            "description": "Build tracking table.",
             "instructions": [
-              "Step 1: Manually create 5 dummy contacts in your HubSpot CRM with messy job titles like 'head of lettings', 'Mgr of Facilities', and 'ops director'.",
-              "Step 2: Open Claude Code and type: 'Use the HubSpot tool to fetch the 5 newest contacts.'",
-              "Step 3: Type: 'Standardize their job titles to either \"Lettings Director\" or \"Operations Manager\" depending on context, and push the updates back to HubSpot.'"
+              "Step 1: Tie it together. Build a Clay table that monitors a list of 20 target companies.",
+              "Step 2: Add columns for the remaining triggers (LinkedIn headcount growth, BuiltWith tech stack changes).",
+              "Step 3: Use n8n to schedule this table to run every morning at 8 AM."
             ]
           },
           {
             "day": "Thursday",
             "type": "Active",
-            "task": "Movemates Sandbox - Autonomous Prospecting (60 mins).",
-            "description": "Autonomous Prospecting.",
+            "task": "Ritu's Offer Project 2 (Finish) (60 mins).",
+            "description": "Lead routing logic.",
             "instructions": [
-              "Step 1: Move one of your dummy contacts into the 'Negotiation' deal stage in HubSpot.",
-              "Step 2: Command Claude Code: 'Pull contacts in the \"Negotiation\" stage.'",
-              "Step 3: Command Claude: 'Use Brave Search to find recent news about their company, draft a personalized follow-up email pitching out-of-hours weekend moving, and save it locally as a text file.'"
+              "Step 1: In n8n, create a routing logic: If any of the 5 triggers fire (e.g., funding detected or growth >10%), push that 'Hot Lead' to Slack and push the record to your HubSpot CRM (via API or Claude Code MCP).",
+              "Step 2: Record your 3-5 minute Loom showing the system automatically generating a 'Daily Hot Leads' list. Post to LinkedIn explaining how you solved the timing problem."
             ]
           },
           {
@@ -445,24 +443,22 @@ export const scheduleData = [
           {
             "day": "Wednesday",
             "type": "Active",
-            "task": "Movemates Sandbox - Apollo to Clay (60 mins).",
-            "description": "Integrate Apollo with Clay.",
+            "task": "Ritu's Offer Project 3: Sequence Optimizer (Start) (60 mins).",
+            "description": "Combining Apollo and Clay.",
             "instructions": [
-              "Step 1: Log into a free Apollo.io account.",
-              "Step 2: Set your search filters: Job Title = 'Facilities Manager', Location = 'London, UK', Employees = '1-50'.",
-              "Step 3: Export 20 of these contacts to a CSV file.",
-              "Step 4: Open Clay, import the CSV, and add a 'Waterfall' enrichment column. Configure it to check Apollo's email first, and if blank, use the Hunter.io or Dropcontact integration as a backup."
+              "Step 1: Problem statement: 'Reply rates are stuck at 2%. Need personalization at scale.'",
+              "Step 2: Export a targeted list of 50 leads from Apollo. Import them into a new Clay table.",
+              "Step 3: Use the skills from Project 2. Add columns representing the 'Sales Triggers' for these 50 specific leads (e.g., recent news, hiring)."
             ]
           },
           {
             "day": "Thursday",
             "type": "Active",
-            "task": "Movemates Sandbox - Intent Webhook (60 mins).",
-            "description": "Intent-based workflow.",
+            "task": "Ritu's Offer Project 3 (Setup) (60 mins).",
+            "description": "Connecting Smartlead.",
             "instructions": [
-              "Step 1: Open n8n and create a new 'Webhook' trigger node.",
-              "Step 2: Open Clay and add an 'HTTP Request' (Export) column.",
-              "Step 3: Paste the n8n webhook URL into the Clay column. Configure Clay to automatically send a payload to n8n only when a lead in your table is marked 'Highly Qualified'."
+              "Step 1: Sign up for a free trial of Smartlead (or Instantly).",
+              "Step 2: In Clay, use the 'HTTP Request' column to push your enriched leads directly into a Smartlead campaign via their API."
             ]
           },
           {
@@ -492,45 +488,41 @@ export const scheduleData = [
           {
             "day": "Monday",
             "type": "Active",
-            "task": "Movemates Sandbox - Signal Blueprinting (60 mins).",
-            "description": "Blueprint multi-threaded signal engine.",
+            "task": "Ritu's Offer Project 3 (AI Personalization) (60 mins).",
+            "description": "Drafting dynamic sequences.",
             "instructions": [
-              "Step 1: Open a Google Doc. Define your expansion signal.",
-              "Step 2: Write out exactly what indicates an office move. Example: 'A London startup under 20 employees just announced Series A funding on Crunchbase.'",
-              "Step 3: Map the logic: If funding = true AND location = London, then score = 100."
+              "Step 1: Inside Smartlead, structure a 3-step email sequence.",
+              "Step 2: Email 1: The AI Hook. Use the dynamic variables you pushed from Clay to inject a hyper-personalized opening line based on their specific sales trigger.",
+              "Step 3: Email 2: Problem-specific value prop. Email 3: Breakup email."
             ]
           },
           {
             "day": "Tuesday",
             "type": "Active",
-            "task": "Movemates Sandbox - Custom Python Scraper (90 mins).",
-            "description": "Python/Scrapy crawler.",
+            "task": "Ritu's Offer Project 3 (A/B Testing) (90 mins).",
+            "description": "A/B test setup.",
             "instructions": [
-              "Step 1: Open your code editor (like VS Code).",
-              "Step 2: Using your Datavid experience, write a 20-line Python script using requests and BeautifulSoup.",
-              "Step 3: Target a public job board page (like Indeed UK) and write logic to scrape the names of companies in London currently hiring an 'Office Relocation Manager'. Print the array of names to your console."
+              "Step 1: In Smartlead, build an A/B test for Email 1.",
+              "Step 2: Variant A uses the AI-generated sales trigger hook. Variant B uses a standard, generic opening line. (This proves to employers you understand testing methodology, not just coding)."
             ]
           },
           {
             "day": "Wednesday",
             "type": "Active",
-            "task": "Movemates Sandbox - Python to n8n (60 mins).",
-            "description": "Webhook setup.",
+            "task": "Ritu's Offer Project 3 (Custom Timing) (60 mins).",
+            "description": "n8n workflow timing.",
             "instructions": [
-              "Step 1: In n8n, create a new Webhook node (POST method).",
-              "Step 2: Update your Python script from Tuesday. Import the requests library.",
-              "Step 3: Instead of printing the company names to the console, write a requests.post() function that sends the array of scraped company names directly to your n8n webhook URL as a JSON payload. Run the script and verify n8n received it."
+              "Step 1: In n8n, build a workflow that controls the timing of the Smartlead sequence.",
+              "Step 2: Add logic: Do not enroll the prospect in the Smartlead campaign until the specific sales trigger (e.g., funding) is actually detected in Clay."
             ]
           },
           {
             "day": "Thursday",
             "type": "Active",
-            "task": "Movemates Sandbox - LLM Routing (90 mins).",
-            "description": "LLM Scoring Node in n8n.",
+            "task": "Ritu's Offer Project 3 (Finish) (90 mins).",
+            "description": "Record Portfolio Piece.",
             "instructions": [
-              "Step 1: In n8n, attach an 'OpenAI/Anthropic' node directly after your webhook.",
-              "Step 2: In the AI node, write the prompt: 'You are evaluating moving leads. If the company {Company Name} has under 50 employees, output the exact word \"Proceed\". Otherwise, output \"Discard\".'",
-              "Step 3: Attach an 'If' node. Configure it to route the workflow to a Slack notification only if the AI output matches the string 'Proceed'."
+              "Step 1: Record your final Loom video. Show the A/B test setup in Smartlead, show how the sequence is triggered by data in Clay, and explain how this fixes the '2% reply rate' problem. Publish it."
             ]
           },
           {
@@ -584,10 +576,10 @@ export const scheduleData = [
           {
             "day": "Wednesday",
             "type": "Active",
-            "task": "Movemates Sandbox - Metrics Math (90 mins).",
-            "description": "Python CAC/LTV Script.",
+            "task": "Synthesizing Analytics (90 mins).",
+            "description": "CAC script in n8n.",
             "instructions": [
-              "Step 1: Create a Google Sheet representing mock Movemates campaign data. Column A: 'Marketing Spend'. Column B: 'Deals Won'.",
+              "Step 1: Create a Google Sheet representing mock campaign data. Column A: 'Marketing Spend'. Column B: 'Deals Won'.",
               "Step 2: Build a scheduled n8n workflow that runs daily.",
               "Step 3: Use the 'Google Sheets' node to read the data, then add a 'Code' (JavaScript) node to divide Spend by Deals Won to calculate the CAC (Customer Acquisition Cost).",
               "Step 4: Send the calculated CAC number to yourself in an email node."
@@ -596,12 +588,12 @@ export const scheduleData = [
           {
             "day": "Thursday",
             "type": "Active",
-            "task": "Movemates Sandbox - CLI Standardization (60 mins).",
-            "description": "Data standardization.",
+            "task": "CLI Data Standardization (60 mins).",
+            "description": "Standardize formatting via CLI.",
             "instructions": [
-              "Step 1: Create a CSV file filled with messy mock data (e.g., UK phone numbers like '07700900000' and company names in all caps).",
+              "Step 1: Create a CSV file filled with messy mock data (e.g., phone numbers like '07700900000' and company names in all caps).",
               "Step 2: Open Claude Code in your terminal.",
-              "Step 3: Type: 'Read this CSV. Write a script to format all phone numbers to the strict +44 format and title-case the company names. Execute the script and save as cleaned_data.csv.'"
+              "Step 3: Type: 'Read this CSV. Write a script to format all phone numbers to international format and title-case the company names. Execute the script and save as cleaned_data.csv.'"
             ]
           },
           {
@@ -650,23 +642,23 @@ export const scheduleData = [
           {
             "day": "Wednesday",
             "type": "Active",
-            "task": "Movemates Sandbox - Architecture Mapping (90 mins).",
-            "description": "Architecture Design.",
+            "task": "Enterprise Architecture Mapping (90 mins).",
+            "description": "Diagramming an enterprise stack.",
             "instructions": [
               "Step 1: Open a free visual tool like Lucidchart or Excalidraw.",
-              "Step 2: Draw a box for 'Estate Agent Fills Out Form on Website'.",
-              "Step 3: Draw an arrow to 'n8n Webhook'.",
-              "Step 4: Draw splitting arrows from n8n to 'HubSpot (Create Deal)' and 'Slack (Notify Movemates Sales Team)'. This gives you a physical blueprint of your pipeline."
+              "Step 2: Draw a box for 'Product telemetry (User Login)'.",
+              "Step 3: Draw an arrow to 'Databricks (Calculate Lead Score)'.",
+              "Step 4: Draw arrows from Databricks -> Reverse ETL -> HubSpot -> n8n -> Slack alert. This gives you a physical blueprint of a mature enterprise pipeline."
             ]
           },
           {
             "day": "Thursday",
             "type": "Active",
-            "task": "Capstone Prep (60 mins).",
-            "description": "The Autonomous Pipeline for Movemates.",
+            "task": "The Ultimate Capstone Prep (60 mins).",
+            "description": "Final project overview.",
             "instructions": [
-              "Step 1: Open a Google Doc. Define your final project: 'The Autonomous Pipeline for Movemates'.",
-              "Step 2: Write down the exact tools you will chain together for your final test next week. (e.g., Python Scraper -> Clay Enrichment -> n8n Webhook -> HubSpot CRM)."
+              "Step 1: Open a Google Doc. Define your final project: 'The Autonomous GTM Engine'.",
+              "Step 2: You will link Ritu's 3 projects together: Trigger Detection -> Enrichment -> Smartlead Sequencing -> CRM Sync. Write down the exact node connections you need to make."
             ]
           },
           {
@@ -696,45 +688,42 @@ export const scheduleData = [
           {
             "day": "Monday",
             "type": "Active",
-            "task": "Movemates Capstone Step 1 & 2 (90 mins).",
-            "description": "Ingest and Enrich.",
+            "task": "Capstone Phase 1 (Trigger to Enrichment) (90 mins).",
+            "description": "Initial trigger flow.",
             "instructions": [
-              "Step 1: Run your custom Python scraper from Week 8 to generate a list of 10 London companies actively hiring office staff.",
-              "Step 2: Open Clay, create a new table, and import that list.",
-              "Step 3: Set up an enrichment waterfall in Clay to find the 'Operations Manager' for each of those 10 companies."
+              "Step 1: Open n8n. Set a schedule trigger (e.g., every day at 9 AM).",
+              "Step 2: Make an HTTP request to an API (like Apollo or builtwith) to pull a fresh list of companies hitting a growth trigger.",
+              "Step 3: Push that raw list into a Clay webhook to initiate your waterfall enrichment from Project 1."
             ]
           },
           {
             "day": "Tuesday",
             "type": "Active",
-            "task": "Movemates Capstone Step 3 (90 mins).",
-            "description": "Route data.",
+            "task": "Capstone Phase 2 (Enrichment to CRM) (90 mins).",
+            "description": "Mapping data to HubSpot.",
             "instructions": [
-              "Step 1: In n8n, create a new Webhook trigger.",
-              "Step 2: In Clay, use the HTTP Request integration to push your 10 enriched contacts to that n8n webhook.",
-              "Step 3: In n8n, attach a HubSpot node and map the JSON payload to automatically create 10 new Contact records in your CRM."
+              "Step 1: Have Clay push the fully enriched contact data (Name, Valid Email, AI Opening Line) out via webhook back to n8n.",
+              "Step 2: Use the n8n HubSpot node to automatically create the Contact record."
             ]
           },
           {
             "day": "Wednesday",
             "type": "Active",
-            "task": "Movemates Capstone Step 4 (90 mins).",
-            "description": "Generate emails.",
+            "task": "Capstone Phase 3 (Sequencing) (90 mins).",
+            "description": "Smartlead enrollment.",
             "instructions": [
-              "Step 1: Open Claude Code in your terminal (with your HubSpot MCP connected).",
-              "Step 2: Command it: 'Fetch the 10 newest contacts from HubSpot.'",
-              "Step 3: Command it: 'Use Brave Search to find the address of their company HQ. Write a hyper-personalized email pitching Movemates' weekend relocation service based on their hiring growth, and save them in a local folder.'"
+              "Step 1: In the same n8n workflow, use the Smartlead HTTP node to automatically enroll that new contact into your A/B tested sequence from Project 3."
             ]
           },
           {
             "day": "Thursday",
             "type": "Active",
             "task": "End-to-end testing (60 mins).",
-            "description": "System check.",
+            "description": "System verification.",
             "instructions": [
               "Step 1: Trigger the entire system from the very beginning.",
-              "Step 2: Watch the executions in n8n and Clay.",
-              "Step 3: Fix any rate-limiting errors (by adding sleep/delay nodes) or prompt hallucinations. Ensure the pipeline flows perfectly without human intervention."
+              "Step 2: Watch the executions flow from n8n -> Clay -> HubSpot -> Smartlead.",
+              "Step 3: Fix any rate-limiting errors (by adding sleep/delay nodes in n8n). Ensure the pipeline flows perfectly without human intervention."
             ]
           },
           {
@@ -743,7 +732,7 @@ export const scheduleData = [
             "task": "Capstone Presentation Prep (30 mins).",
             "description": "Scripting.",
             "instructions": [
-              "Script your presentation for the Capstone project. Structure it like the teardowns you watched in Week 1 (Problem, Architecture, Execution, ROI)."
+              "Script your presentation for the Capstone project. Structure it: Problem (Disjointed tools), Architecture (n8n orchestrating Clay/CRM/Smartlead), Execution (Live run), ROI (Zero manual hours)."
             ]
           },
           {
@@ -768,8 +757,8 @@ export const scheduleData = [
             "description": "Record Capstone Presentation.",
             "instructions": [
               "Step 1: Open Loom.",
-              "Step 2: Record a 5-10 minute presentation.",
-              "Step 3: Show your code, your n8n canvas, and your Clay table. Verbally explain how this automated pipeline solves the B2B commercial moving lead generation problem for Movemates' 2-van fleet."
+              "Step 2: Record a 5-10 minute presentation of your Ultimate GTM Engine.",
+              "Step 3: Show your code, your n8n canvas, and your Clay table. Verbally explain how this automated pipeline solves the B2B commercial lead generation problem."
             ]
           },
           {

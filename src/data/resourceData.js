@@ -66,5 +66,14 @@ export const resourceData = [
         "url": "https://databricks.com"
       }
     ]
+  },
+  {
+    "category": "Personal Documents & References",
+    "links": [
+      {
+        "title": "GTME Track Docs & Ritu's Guides (Google Drive)",
+        "url": "https://drive.google.com/drive/folders/1R30VwI9XkLXYz-zXTri5ZJ-tI2NigiPh?usp=sharing"
+      }
+    ]
   }
 ];
