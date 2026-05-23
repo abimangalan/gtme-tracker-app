@@ -34,26 +34,30 @@ export const useProgressTracker = (user, isLocalMode) => {
     scheduleData.forEach(phase => {
       phase.weeks.forEach(week => {
         DAYS_OF_WEEK.forEach(dayName => {
-          let isCompleted = false;
+          let dayAllDone = true;
 
           const gtmeDay = week.days.find(d => d.day === dayName);
           if (gtmeDay) {
+            let gtmeTaskDone = 0;
             gtmeDay.instructions.forEach((_, idx) => {
               total++;
               if (completedItems[`w${week.weekNumber}-${dayName}-i${idx}`]) {
                 done++;
-                isCompleted = true;
+                gtmeTaskDone++;
               }
             });
+            if (gtmeDay.instructions.length > 0 && gtmeTaskDone < gtmeDay.instructions.length) {
+              dayAllDone = false;
+            }
           }
           
-          ['gtme', 'dsa', 'meditation', 'affirmation', 'exercise'].forEach(habit => {
-              if (completedItems[`habit-w${week.weekNumber}-${dayName}-${habit}`]) {
-                 isCompleted = true;
+          ['dsa', 'meditation', 'affirmation', 'exercise'].forEach(habit => {
+              if (!completedItems[`habit-w${week.weekNumber}-${dayName}-${habit}`]) {
+                 dayAllDone = false;
               }
           });
 
-          allDays.push({ isCompleted });
+          allDays.push({ isCompleted: dayAllDone });
         });
       });
     });

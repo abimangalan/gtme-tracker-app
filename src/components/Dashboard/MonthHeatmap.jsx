@@ -52,11 +52,11 @@ export default function MonthHeatmap({
         </div>
         
         {/* Heatmap Grid */}
-        <div className="flex-1">
+        <div className="flex-1 ml-2">
           {/* Day Numbers Row */}
-          <div className="flex gap-1 mb-2">
+          <div className="grid grid-cols-[repeat(28,minmax(0,1fr))] gap-1 mb-2">
             {days.map((_, idx) => (
-              <div key={idx} className="w-5 h-5 flex items-center justify-center text-[10px] text-slate-400 font-medium">
+              <div key={idx} className="flex items-center justify-center text-[10px] text-slate-400 font-medium">
                 {idx + 1}
               </div>
             ))}
@@ -64,16 +64,16 @@ export default function MonthHeatmap({
 
           <div className="flex flex-col space-y-2">
             {HABITS.map(habit => (
-              <div key={habit.id} className="flex gap-1 h-5">
+              <div key={habit.id} className="grid grid-cols-[repeat(28,minmax(0,1fr))] gap-1 h-5 md:h-6">
                 {days.map((day, idx) => {
                   const completed = isHabitCompleted(day.weekNumber, day.dayName, habit.id, day.gtmeDay);
-                  const isWeekendAndGtme = habit.id === 'gtme' && !day.gtmeDay;
+                  const isWeekendAndGtme = habit.id === 'gtme' && (!day.gtmeDay || day.gtmeDay.instructions.length === 0);
                   
                   return (
                     <div 
                       key={idx}
                       title={`${habit.label} - Week ${day.weekNumber} ${day.dayName}`}
-                      className={`w-5 h-5 rounded-sm transition-all duration-200 ${
+                      className={`w-full h-full rounded-sm transition-all duration-200 ${
                         isWeekendAndGtme ? 'bg-slate-100' :
                         completed ? 'bg-emerald-500' : 'bg-slate-200'
                       }`}
