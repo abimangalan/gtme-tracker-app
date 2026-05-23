@@ -75,7 +75,7 @@ export default function MonthHeatmap({
                       title={`${habit.label} - Week ${day.weekNumber} ${day.dayName}`}
                       className={`w-5 h-5 rounded-sm transition-all duration-200 ${
                         isWeekendAndGtme ? 'bg-slate-100' :
-                        completed ? 'bg-indigo-500' : 'bg-slate-200'
+                        completed ? 'bg-emerald-500' : 'bg-slate-200'
                       }`}
                     />
                   );
