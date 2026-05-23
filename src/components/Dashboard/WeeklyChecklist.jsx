@@ -34,9 +34,37 @@ export default function WeeklyChecklist({
               gtmeProgress = getDayProgress(week.weekNumber, dayName, gtmeDay.instructions);
             }
 
+            let dayTotal = EXTRA_HABITS.length;
+            let dayDone = 0;
+
+            if (gtmeDay) {
+              gtmeProgress = getDayProgress(week.weekNumber, dayName, gtmeDay.instructions);
+              dayTotal += gtmeProgress.total;
+              dayDone += gtmeProgress.done;
+            }
+
+            EXTRA_HABITS.forEach(habit => {
+              if (completedItems[`habit-w${week.weekNumber}-${dayName}-${habit.id}`]) {
+                dayDone++;
+              }
+            });
+
+            const dayProgressPct = dayTotal > 0 ? (dayDone / dayTotal) * 100 : 0;
+
             return (
               <div key={idx} className="bg-white border text-center border-slate-200 rounded-lg p-3 flex flex-col shadow-sm">
-                <h4 className="text-slate-700 font-bold mb-3 border-b border-slate-100 pb-2">{dayName}</h4>
+                <div className="mb-3 border-b border-slate-100 pb-3">
+                  <h4 className="text-slate-700 font-bold">{dayName}</h4>
+                  <div className="w-full bg-slate-100 rounded-full h-1.5 mt-2 overflow-hidden">
+                    <div 
+                      className={`h-1.5 rounded-full transition-all duration-500 ${dayProgressPct === 100 ? 'bg-emerald-500' : 'bg-indigo-500'}`} 
+                      style={{ width: `${dayProgressPct}%` }}
+                    ></div>
+                  </div>
+                  <div className="text-[9px] text-slate-400 font-bold uppercase tracking-wider mt-1">
+                    {dayDone}/{dayTotal} Completed
+                  </div>
+                </div>
                 
                 <div className="space-y-3 flex-1 flex flex-col text-left">
                   {/* GTME Section */}
