@@ -1,10 +1,14 @@
 export const sweData = [
   {
-    "phase": "Month 1: Core Fundamentals & Data Engineering",
+    "phase": "Month 1: Pre-SWE (GTME Focus)",
+    "weeks": []
+  },
+  {
+    "phase": "Month 2: Core Fundamentals & Data Engineering",
     "weeks": [
       {
-        "weekNumber": 1,
-        "title": "Week 1: Arrays, Hashing, & Vectorized Math",
+        "weekNumber": 5,
+        "title": "Week 5: Arrays, Hashing, & Vectorized Math",
         "days": [
           {
             "day": "Monday",
@@ -83,8 +87,8 @@ export const sweData = [
         ]
       },
       {
-        "weekNumber": 2,
-        "title": "Week 2: Two Pointers, String Manipulation, & Advanced Pandas",
+        "weekNumber": 6,
+        "title": "Week 6: Two Pointers, String Manipulation, & Advanced Pandas",
         "days": [
           {
             "day": "Monday",
@@ -161,8 +165,8 @@ export const sweData = [
         ]
       },
       {
-        "weekNumber": 3,
-        "title": "Week 3: Sliding Windows, Stacks, & Statistical Visualization",
+        "weekNumber": 7,
+        "title": "Week 7: Sliding Windows, Stacks, & Statistical Visualization",
         "days": [
           {
             "day": "Monday",
@@ -240,8 +244,8 @@ export const sweData = [
         ]
       },
       {
-        "weekNumber": 4,
-        "title": "Week 4: Binary Search, Linked Lists, & Linear Regression Theory",
+        "weekNumber": 8,
+        "title": "Week 8: Binary Search, Linked Lists, & Linear Regression Theory",
         "days": [
           {
             "day": "Monday",
@@ -320,11 +324,11 @@ export const sweData = [
     ]
   },
   {
-    "phase": "Month 2: Advanced Data Structures & Classification Models",
+    "phase": "Month 3: Advanced Data Structures & Classification Models",
     "weeks": [
       {
-        "weekNumber": 5,
-        "title": "Week 5: Tree Traversals, Polynomial Regression & Regularization",
+        "weekNumber": 9,
+        "title": "Week 9: Tree Traversals, Polynomial Regression & Regularization",
         "days": [
           {
             "day": "Monday",
@@ -401,8 +405,8 @@ export const sweData = [
         ]
       },
       {
-        "weekNumber": 6,
-        "title": "Week 6: Tries, Heaps, & Logistic Regression (Maximum Likelihood)",
+        "weekNumber": 10,
+        "title": "Week 10: Tries, Heaps, & Logistic Regression (Maximum Likelihood)",
         "days": [
           {
             "day": "Monday",
@@ -479,8 +483,8 @@ export const sweData = [
         ]
       },
       {
-        "weekNumber": 7,
-        "title": "Week 7: SQL 50 (DBMS), KNN, & Support Vector Machines (SVM)",
+        "weekNumber": 11,
+        "title": "Week 11: SQL 50 (DBMS), KNN, & Support Vector Machines (SVM)",
         "days": [
           {
             "day": "Monday",
@@ -557,8 +561,8 @@ export const sweData = [
         ]
       },
       {
-        "weekNumber": 8,
-        "title": "Week 8: Backtracking, NLP, & Naive Bayes",
+        "weekNumber": 12,
+        "title": "Week 12: Backtracking, NLP, & Naive Bayes",
         "days": [
           {
             "day": "Monday",
@@ -637,11 +641,11 @@ export const sweData = [
     ]
   },
   {
-    "phase": "Month 3: Algorithmic Depth & Enterprise AI Deployment",
+    "phase": "Month 4: Algorithmic Depth & Enterprise AI Deployment",
     "weeks": [
       {
-        "weekNumber": 9,
-        "title": "Week 9: Graphs, Decision Trees, & Random Forests",
+        "weekNumber": 13,
+        "title": "Week 13: Graphs, Decision Trees, & Random Forests",
         "days": [
           {
             "day": "Monday",
@@ -718,8 +722,8 @@ export const sweData = [
         ]
       },
       {
-        "weekNumber": 10,
-        "title": "Week 10: Dynamic Programming & Ensemble Boosting",
+        "weekNumber": 14,
+        "title": "Week 14: Dynamic Programming & Ensemble Boosting",
         "days": [
           {
             "day": "Monday",
@@ -796,8 +800,8 @@ export const sweData = [
         ]
       },
       {
-        "weekNumber": 11,
-        "title": "Week 11: Unsupervised Learning & Computer Networks",
+        "weekNumber": 15,
+        "title": "Week 15: Unsupervised Learning & Computer Networks",
         "days": [
           {
             "day": "Monday",
@@ -874,8 +878,8 @@ export const sweData = [
         ]
       },
       {
-        "weekNumber": 12,
-        "title": "Week 12: Dimensionality Reduction, API Deployment, & Portfolio Polish",
+        "weekNumber": 16,
+        "title": "Week 16: Dimensionality Reduction, API Deployment, & Portfolio Polish",
         "days": [
           {
             "day": "Monday",

@@ -32,52 +32,70 @@ export const useProgressTracker = (user, isLocalMode) => {
     const allDays = [];
     const DAYS_OF_WEEK = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
-    scheduleData.forEach((phase, phaseIndex) => {
-      // Find matching SWE phase if available to check completion
+    const totalPhases = Math.max(scheduleData.length, sweData.length);
+    for (let phaseIndex = 0; phaseIndex < totalPhases; phaseIndex++) {
+      const currentGtmePhase = scheduleData[phaseIndex] || { weeks: [] };
       const currentSwePhase = sweData[phaseIndex] || { weeks: [] };
 
-      phase.weeks.forEach((week, weekIndex) => {
-        const currentSweWeek = currentSwePhase.weeks.find(w => w.weekNumber === week.weekNumber) || { days: [] };
+      // Map combined weeks exactly as DashboardView
+      const combinedWeeksMap = new Map();
+      currentGtmePhase.weeks.forEach(w => combinedWeeksMap.set(w.weekNumber, { gtme: w, swe: null }));
+      currentSwePhase.weeks.forEach(w => {
+        if (combinedWeeksMap.has(w.weekNumber)) {
+          combinedWeeksMap.get(w.weekNumber).swe = w;
+        } else {
+          combinedWeeksMap.set(w.weekNumber, { gtme: null, swe: w });
+        }
+      });
+
+      const sortedWeekNumbers = Array.from(combinedWeeksMap.keys()).sort((a,b) => a - b);
+
+      sortedWeekNumbers.forEach(num => {
+        const { gtme, swe } = combinedWeeksMap.get(num);
 
         DAYS_OF_WEEK.forEach(dayName => {
           let dayAllDone = true;
 
           // Check GTME Checklists
-          const gtmeDay = week.days.find(d => d.day === dayName);
-          if (gtmeDay) {
-            let gtmeTaskDone = 0;
-            gtmeDay.instructions.forEach((_, idx) => {
-              total++;
-              if (completedItems[`w${week.weekNumber}-${dayName}-i${idx}`]) {
-                done++;
-                gtmeTaskDone++;
+          if (gtme) {
+            const gtmeDay = gtme.days.find(d => d.day === dayName);
+            if (gtmeDay) {
+              let gtmeTaskDone = 0;
+              gtmeDay.instructions.forEach((_, idx) => {
+                total++;
+                if (completedItems[`w${num}-${dayName}-i${idx}`]) {
+                  done++;
+                  gtmeTaskDone++;
+                }
+              });
+              if (gtmeDay.instructions.length > 0 && gtmeTaskDone < gtmeDay.instructions.length) {
+                dayAllDone = false;
               }
-            });
-            if (gtmeDay.instructions.length > 0 && gtmeTaskDone < gtmeDay.instructions.length) {
-              dayAllDone = false;
             }
           }
 
           // Check SWE Checklists
-          const sweDay = currentSweWeek.days.find(d => d.day === dayName);
-          if (sweDay) {
-            let sweTaskDone = 0;
-            sweDay.instructions.forEach((_, idx) => {
-              total++;
-              if (completedItems[`swe-w${week.weekNumber}-${dayName}-i${idx}`]) {
-                done++;
-                sweTaskDone++;
-              }
-            });
-            if (sweDay.instructions.length > 0 && sweTaskDone < sweDay.instructions.length) {
-              dayAllDone = false;
-            }
+          if (swe) {
+             const sweDay = swe.days.find(d => d.day === dayName);
+             if (sweDay) {
+               let sweTaskDone = 0;
+               sweDay.instructions.forEach((_, idx) => {
+                 total++;
+                 if (completedItems[`swe-w${num}-${dayName}-i${idx}`]) {
+                   done++;
+                   sweTaskDone++;
+                 }
+               });
+               if (sweDay.instructions.length > 0 && sweTaskDone < sweDay.instructions.length) {
+                 dayAllDone = false;
+               }
+             }
           }
           
           // Check Extra Habits
           ['meditation', 'affirmation', 'exercise'].forEach(habit => {
               total++; // Add habit to total expected operations
-              if (completedItems[`habit-w${week.weekNumber}-${dayName}-${habit}`]) {
+              if (completedItems[`habit-w${num}-${dayName}-${habit}`]) {
                  done++;
               } else {
                  dayAllDone = false;
@@ -87,7 +105,7 @@ export const useProgressTracker = (user, isLocalMode) => {
           allDays.push({ isCompleted: dayAllDone });
         });
       });
-    });
+    }
 
     let maxStreak = 0;
     let lastActiveIdx = -1;

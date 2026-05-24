@@ -1,7 +1,7 @@
 import React from 'react';
 
 const HABITS = [
-  { id: 'gtme', label: 'GTME' },
+  { id: 'gtme', label: 'GTME Training' },
   { id: 'swe', label: 'SWE Upskilling' },
   { id: 'meditation', label: 'Meditation' },
   { id: 'affirmation', label: 'Affirmation' },
@@ -9,29 +9,22 @@ const HABITS = [
 ];
 
 export default function MonthHeatmap({ 
-  weeks, 
-  sweWeeks,
+  combinedWeeks = [],
   completedItems, 
   getDayProgress 
 }) {
-  // Generate a flat array of all 28 days for this phase (4 weeks * 7 days)
   const days = [];
   const DAYS_OF_WEEK = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
-  weeks.forEach((week) => {
+  combinedWeeks.forEach(({ gtme, swe }) => {
     DAYS_OF_WEEK.forEach(dayName => {
-      let sweDay = null;
-      const sweWeek = sweWeeks?.find(w => w.weekNumber === week.weekNumber);
-      if (sweWeek) {
-        sweDay = sweWeek.days.find(d => d.day === dayName);
-      }
+      const weekNum = gtme?.weekNumber || swe?.weekNumber;
       
       days.push({
-        weekNumber: week.weekNumber,
+        weekNumber: weekNum,
         dayName: dayName,
-        // Find the GTME day data if it exists
-        gtmeDay: week.days.find(d => d.day === dayName),
-        sweDay: sweDay
+        gtmeDay: gtme ? gtme.days.find(d => d.day === dayName) : null,
+        sweDay: swe ? swe.days.find(d => d.day === dayName) : null
       });
     });
   });
@@ -69,7 +62,7 @@ export default function MonthHeatmap({
           {/* Day Numbers Row */}
           <div className="grid grid-cols-[repeat(28,minmax(0,1fr))] gap-1 mb-2">
             {days.map((_, idx) => (
-              <div key={idx} className="flex items-center justify-center text-[10px] text-slate-400 font-medium">
+              <div key={idx} className="flex items-center justify-center text-[10px] text-slate-400 font-medium truncate">
                 {idx + 1}
               </div>
             ))}
