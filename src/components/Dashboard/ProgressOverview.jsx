@@ -1,4 +1,4 @@
-
+import { generateTaskId, generateHabitId } from '../../utils/idGenerator';
 
 const CircularProgress = ({ value, label, sublabel, colorClass, strokeClass }) => {
   const radius = 36;
@@ -55,9 +55,10 @@ export default function ProgressOverview({ combinedWeeks = [], completedItems, s
       if (gtme) {
         const gtmeDay = gtme.days.find(d => d.day === dayName);
         if (gtmeDay) {
-          gtmeDay.instructions.forEach((_, idx) => {
+          gtmeDay.instructions.forEach((inst) => {
             gtmeTotal++;
-            if (completedItems[`w${weekNumber}-${dayName}-i${idx}`]) {
+            const id = generateTaskId('w', weekNumber, dayName, inst);
+            if (completedItems[id]) {
               gtmeDone++;
             }
           });
@@ -68,9 +69,10 @@ export default function ProgressOverview({ combinedWeeks = [], completedItems, s
       if (swe) {
         const sweDay = swe.days.find(d => d.day === dayName);
         if (sweDay) {
-          sweDay.instructions.forEach((_, idx) => {
+          sweDay.instructions.forEach((inst) => {
             habitsTotal++; // Treat SWE tasks as part of the habits/upskilling progress logic
-            if (completedItems[`swe-w${weekNumber}-${dayName}-i${idx}`]) {
+            const id = generateTaskId('swe-w', weekNumber, dayName, inst);
+            if (completedItems[id]) {
               habitsDone++;
             }
           });
@@ -80,7 +82,8 @@ export default function ProgressOverview({ combinedWeeks = [], completedItems, s
       // Habits
       ['meditation', 'affirmation', 'exercise'].forEach(habit => {
         habitsTotal++;
-        if (completedItems[`habit-w${weekNumber}-${dayName}-${habit}`]) {
+        const id = generateHabitId(weekNumber, dayName, habit);
+        if (completedItems[id]) {
           habitsDone++;
         }
       });

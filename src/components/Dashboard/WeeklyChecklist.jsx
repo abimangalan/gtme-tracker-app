@@ -1,5 +1,6 @@
 
 import { ChevronRight, Calendar } from 'lucide-react';
+import { generateHabitId } from '../../utils/idGenerator';
 
 const EXTRA_HABITS = [
   { id: 'meditation', label: 'Meditation' },
@@ -51,7 +52,8 @@ export default function WeeklyChecklist({
             }
 
             EXTRA_HABITS.forEach(habit => {
-              if (completedItems[`habit-w${weekNumber}-${dayName}-${habit.id}`]) {
+              const id = generateHabitId(weekNumber, dayName, habit.id);
+              if (completedItems[id]) {
                 dayDone++;
               }
             });
@@ -125,7 +127,7 @@ export default function WeeklyChecklist({
                      <h5 className="text-[10px] uppercase font-bold text-slate-400 mb-2">Daily Habits</h5>
                      <div className="space-y-2">
                        {EXTRA_HABITS.map(habit => {
-                         const id = `habit-w${weekNumber}-${dayName}-${habit.id}`;
+                         const id = generateHabitId(weekNumber, dayName, habit.id);
                          const isCompleted = !!completedItems[id];
                          
                          return (

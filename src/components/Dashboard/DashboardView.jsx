@@ -1,9 +1,7 @@
-
 import ProgressOverview from './ProgressOverview';
 import MonthHeatmap from './MonthHeatmap';
 import WeeklyChecklist from './WeeklyChecklist';
-import { scheduleData } from '../../data/scheduleData';
-import { sweData } from '../../data/sweData';
+import { getCombinedWeeksForPhase } from '../../utils/trackMerger';
 
 export default function DashboardView({ 
   activePhase, 
@@ -13,28 +11,7 @@ export default function DashboardView({
   getDayProgress,
   setSelectedDay 
 }) {
-  const currentGtmePhase = scheduleData[activePhase] || { weeks: [] };
-  const currentSwePhase = sweData[activePhase] || { weeks: [] };
-
-  const combinedWeeksMap = new Map();
-  if (currentGtmePhase.weeks) {
-    currentGtmePhase.weeks.forEach(w => combinedWeeksMap.set(w.weekNumber, { gtme: w, swe: null }));
-  }
-  if (currentSwePhase.weeks) {
-    currentSwePhase.weeks.forEach(w => {
-      if (combinedWeeksMap.has(w.weekNumber)) {
-        combinedWeeksMap.get(w.weekNumber).swe = w;
-      } else {
-        combinedWeeksMap.set(w.weekNumber, { gtme: null, swe: w });
-      }
-    });
-  }
-
-  const combinedWeeks = Array.from(combinedWeeksMap.values()).sort((a,b) => {
-    const aNum = a.gtme?.weekNumber || a.swe?.weekNumber;
-    const bNum = b.gtme?.weekNumber || b.swe?.weekNumber;
-    return aNum - bNum;
-  });
+  const combinedWeeks = getCombinedWeeksForPhase(activePhase);
 
   return (
     <div className="space-y-6">
@@ -69,3 +46,4 @@ export default function DashboardView({
     </div>
   );
 }
+

@@ -3,11 +3,22 @@ import DayCard from './DayCard';
 import { scheduleData } from '../../data/scheduleData';
 
 export default function WeeklyGrid({ activePhase, getDayProgress, setSelectedDay }) {
+  const currentPhase = scheduleData[activePhase];
+
+  if (!currentPhase) {
+    return (
+      <div className="flex flex-col items-center justify-center py-20 text-slate-500">
+        <p className="text-lg font-medium">No track data available for this month.</p>
+        <p className="text-sm">Please select a different month from the navigation above.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="print:block">
       {/* Screen Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 print:hidden">
-        {scheduleData[activePhase].weeks.map((week) => (
+        {currentPhase.weeks.map((week) => (
           <div key={week.weekNumber} className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col h-full">
             <div className="bg-slate-900 px-4 py-3 border-b border-slate-800">
               <div className="flex items-center gap-2 text-indigo-400 text-xs font-bold tracking-wider uppercase mb-1">

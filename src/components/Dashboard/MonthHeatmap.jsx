@@ -1,4 +1,4 @@
-
+import { generateHabitId } from '../../utils/idGenerator';
 
 const HABITS = [
   { id: 'gtme', label: 'GTME Training' },
@@ -40,7 +40,7 @@ export default function MonthHeatmap({
       const progress = getDayProgress('swe-w', weekNum, dayName, dayData.sweDay.instructions);
       return progress.isAllDone;
     }
-    const key = `habit-w${weekNum}-${dayName}-${habitId}`;
+    const key = generateHabitId(weekNum, dayName, habitId);
     return !!completedItems[key];
   };
 

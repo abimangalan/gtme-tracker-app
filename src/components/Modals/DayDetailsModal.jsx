@@ -1,6 +1,7 @@
 
 import { Calendar, X, ListChecks, Info, Bookmark, ExternalLink, CheckSquare, Square } from 'lucide-react';
 import { getTypeStyles, renderTextWithLinks } from '../../utils/helpers';
+import { generateTaskId } from '../../utils/idGenerator';
 
 export default function DayDetailsModal({ selectedDay, setSelectedDay, getDayProgress, toggleInstruction, completedItems }) {
   if (!selectedDay) return null;
@@ -47,12 +48,12 @@ export default function DayDetailsModal({ selectedDay, setSelectedDay, getDayPro
             
             <div className="space-y-3">
               {selectedDay.instructions.map((instruction, idx) => {
-                const prefix = selectedDay.trackPrefix || 'w';
-                const isChecked = completedItems[`${prefix}${selectedDay.weekNumber}-${selectedDay.day}-i${idx}`];
+                const id = generateTaskId(selectedDay.trackPrefix, selectedDay.weekNumber, selectedDay.day, instruction);
+                const isChecked = !!completedItems[id];
                 return (
                   <div 
                     key={idx} 
-                    onClick={() => toggleInstruction(selectedDay.trackPrefix, selectedDay.weekNumber, selectedDay.day, idx)}
+                    onClick={() => toggleInstruction(selectedDay.trackPrefix, selectedDay.weekNumber, selectedDay.day, idx, instruction)}
                     className={`flex gap-3 p-3 rounded-lg border cursor-pointer transition-all ${isChecked ? 'bg-emerald-50/50 border-emerald-200' : 'bg-white border-slate-200 hover:border-indigo-300 hover:shadow-sm'}`}
                   >
                     <div className={`shrink-0 mt-0.5 transition-colors ${isChecked ? 'text-emerald-500' : 'text-slate-300'}`}>
