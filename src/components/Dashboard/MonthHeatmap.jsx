@@ -51,7 +51,7 @@ export default function MonthHeatmap({
       {/* Scrollable Container */}
       <div className="relative flex overflow-x-auto no-scrollbar pb-2">
         {/* Habit Labels Column - Sticky on mobile */}
-        <div className="sticky left-0 z-10 flex flex-col justify-between pr-4 mt-6 space-y-2 bg-white/95 backdrop-blur-sm">
+        <div className="sticky left-0 z-20 flex flex-col justify-between pr-4 mt-6 space-y-2 bg-white border-r border-slate-100 shadow-[4px_0_8px_-2px_rgba(0,0,0,0.05)]">
           {HABITS.map(habit => (
             <div key={habit.id} className="text-[10px] lg:text-xs font-bold text-slate-500 h-5 lg:h-6 flex items-center justify-end whitespace-nowrap">
               {habit.label}
@@ -60,7 +60,7 @@ export default function MonthHeatmap({
         </div>
         
         {/* Heatmap Grid - With min-width to ensure square size */}
-        <div className="flex-1 min-w-[700px]">
+        <div className="flex-1 min-w-[700px] ml-2">
           {/* Day Numbers Row */}
           <div className="grid grid-cols-[repeat(28,minmax(0,1fr))] gap-1 mb-2">
             {days.map((_, idx) => (
