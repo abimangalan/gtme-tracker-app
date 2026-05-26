@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Trophy, Bookmark, Printer, LogOut, Code, Flame, LayoutDashboard, ListChecks } from 'lucide-react';
+import { Trophy, Bookmark, Printer, LogOut, Code, Flame, LayoutDashboard, ListChecks, CheckCircle2 } from 'lucide-react';
 
 export default function Header({ isLocalMode, user, progress, streak, setShowResources, handleLogout }) {
   return (
@@ -45,7 +45,19 @@ export default function Header({ isLocalMode, user, progress, streak, setShowRes
             to="/gtme" 
             className={({ isActive }) => `flex items-center gap-2 py-3 border-b-2 font-bold text-sm transition-all ${isActive ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300'}`}
           >
-            <ListChecks size={18} /> GTME Tracker
+            <ListChecks size={18} /> GTME Track
+          </NavLink>
+          <NavLink 
+            to="/swe" 
+            className={({ isActive }) => `flex items-center gap-2 py-3 border-b-2 font-bold text-sm transition-all ${isActive ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300'}`}
+          >
+            <Code size={18} /> SWE Track
+          </NavLink>
+          <NavLink 
+            to="/habits" 
+            className={({ isActive }) => `flex items-center gap-2 py-3 border-b-2 font-bold text-sm transition-all ${isActive ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300'}`}
+          >
+            <CheckCircle2 size={18} /> Daily Habits
           </NavLink>
         </div>
         

@@ -1,21 +1,35 @@
+import { useState } from 'react';
 import { Calendar } from 'lucide-react';
 import DayCard from './DayCard';
+import PhaseNavigation from './PhaseNavigation';
 import { scheduleData } from '../../data/scheduleData';
 
-export default function WeeklyGrid({ activePhase, getDayProgress, setSelectedDay }) {
+export default function WeeklyGrid({ getDayProgress, setSelectedDay }) {
+  const [activePhase, setActivePhase] = useState(0);
   const currentPhase = scheduleData[activePhase];
 
   if (!currentPhase) {
     return (
       <div className="flex flex-col items-center justify-center py-20 text-slate-500">
-        <p className="text-lg font-medium">No track data available for this month.</p>
-        <p className="text-sm">Please select a different month from the navigation above.</p>
+        <PhaseNavigation 
+          activePhase={activePhase} 
+          setActivePhase={setActivePhase} 
+        />
+        <div className="mt-8 text-center">
+          <p className="text-lg font-medium">No track data available for this month.</p>
+          <p className="text-sm">Please select a different month from the navigation above.</p>
+        </div>
       </div>
     );
   }
 
   return (
     <div className="print:block">
+      <PhaseNavigation 
+        activePhase={activePhase} 
+        setActivePhase={setActivePhase} 
+      />
+
       {/* Screen Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 print:hidden">
         {currentPhase.weeks.map((week) => (

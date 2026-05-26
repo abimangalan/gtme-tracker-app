@@ -7,15 +7,15 @@ import { isConfigured } from './config/firebase';
 import Header from './components/Layout/Header';
 import LoginScreen from './components/Auth/LoginScreen';
 import SetupScreen from './components/Auth/SetupScreen';
-import PhaseNavigation from './components/Dashboard/PhaseNavigation';
 import DashboardView from './components/Dashboard/DashboardView';
 import WeeklyGrid from './components/Dashboard/WeeklyGrid';
+import SweView from './components/Views/SweView';
+import HabitsView from './components/Views/HabitsView';
 import DayDetailsModal from './components/Modals/DayDetailsModal';
 import ResourcesModal from './components/Modals/ResourcesModal';
 
 export default function App() {
   const [isLocalMode, setIsLocalMode] = useState(false);
-  const [activePhase, setActivePhase] = useState(0);
   const [selectedDay, setSelectedDay] = useState(null);
   const [showResources, setShowResources] = useState(false);
 
@@ -52,15 +52,9 @@ export default function App() {
       />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
-        <PhaseNavigation 
-          activePhase={activePhase} 
-          setActivePhase={setActivePhase} 
-        />
-        
         <Routes>
           <Route path="/" element={
             <DashboardView 
-              activePhase={activePhase}
               completedItems={tracker.completedItems}
               streak={tracker.streak}
               toggleHabit={tracker.toggleHabit}
@@ -70,9 +64,20 @@ export default function App() {
           } />
           <Route path="/gtme" element={
             <WeeklyGrid 
-              activePhase={activePhase} 
               getDayProgress={tracker.getDayProgress} 
               setSelectedDay={setSelectedDay} 
+            />
+          } />
+          <Route path="/swe" element={
+            <SweView 
+              getDayProgress={tracker.getDayProgress} 
+              setSelectedDay={setSelectedDay} 
+            />
+          } />
+          <Route path="/habits" element={
+            <HabitsView 
+              completedItems={tracker.completedItems}
+              toggleHabit={tracker.toggleHabit}
             />
           } />
           <Route path="*" element={<Navigate to="/" replace />} />
