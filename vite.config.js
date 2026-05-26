@@ -8,16 +8,27 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg', 'icons.svg', 'apple-touch-icon.png'],
+      injectRegister: 'script',
+      includeAssets: ['favicon.svg', 'icons.svg', 'apple-touch-icon.png', 'pwa-192x192.png', 'pwa-512x512.png'],
       manifest: {
         name: 'LifeOS Career Dashboard',
         short_name: 'LifeOS',
         description: 'Advanced career upskilling and habit tracking dashboard',
-        theme_color: '#0f172a', // slate-900
-        background_color: '#f8fafc', // slate-50
+        start_url: '/',
         display: 'standalone',
-        orientation: 'portrait',
+        background_color: '#f8fafc',
+        theme_color: '#0f172a',
         icons: [
+          {
+            src: 'pwa-192x192.png',
+            sizes: '192x192',
+            type: 'image/png'
+          },
+          {
+            src: 'pwa-512x512.png',
+            sizes: '512x512',
+            type: 'image/png'
+          },
           {
             src: 'app-icon.svg',
             sizes: 'any',
