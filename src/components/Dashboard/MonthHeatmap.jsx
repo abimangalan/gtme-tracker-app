@@ -15,7 +15,6 @@ export default function MonthHeatmap({
   completedItems, 
   getDayProgress 
 }) {
-  // Flatten all 28 days of the current month
   const days = [];
   combinedWeeks.forEach(({ gtme, swe }) => {
     DAYS_OF_WEEK.forEach(dayName => {
@@ -45,57 +44,69 @@ export default function MonthHeatmap({
   };
 
   return (
-    <div className="bg-white rounded-lg border border-slate-200 overflow-hidden shadow-sm">
-      <div className="bg-slate-50/50 px-4 py-3 border-b border-slate-100 flex items-center justify-between">
-        <h2 className="text-sm font-black text-slate-700 uppercase tracking-wider">Monthly Momentum</h2>
-        <div className="flex items-center gap-3">
-           <div className="flex items-center gap-1">
-             <div className="w-2.5 h-2.5 rounded-sm bg-slate-200"></div>
-             <span className="text-[10px] font-bold text-slate-400 uppercase">Planned</span>
-           </div>
-           <div className="flex items-center gap-1">
-             <div className="w-2.5 h-2.5 rounded-sm bg-emerald-500"></div>
-             <span className="text-[10px] font-bold text-slate-400 uppercase">Done</span>
-           </div>
+    <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm flex flex-col">
+      {/* 1. Header Section - Strongly Anchored */}
+      <div className="px-5 py-4 border-b border-slate-100 bg-slate-50/30">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h2 className="text-sm font-black text-slate-900 uppercase tracking-widest leading-none">
+              Monthly Momentum
+            </h2>
+            <p className="text-[10px] font-bold text-slate-400 mt-1.5 uppercase tracking-tighter">
+              28-Day Performance Visualization
+            </p>
+          </div>
+          
+          <div className="flex items-center gap-4 bg-white px-3 py-1.5 rounded-lg border border-slate-100 shadow-sm self-start sm:self-auto">
+             <div className="flex items-center gap-1.5">
+               <div className="w-2.5 h-2.5 rounded-sm bg-slate-200"></div>
+               <span className="text-[9px] font-black text-slate-500 uppercase">Planned</span>
+             </div>
+             <div className="flex items-center gap-1.5">
+               <div className="w-2.5 h-2.5 rounded-sm bg-emerald-500"></div>
+               <span className="text-[9px] font-black text-slate-500 uppercase">Achieved</span>
+             </div>
+          </div>
         </div>
       </div>
       
-      <div className="relative group">
-        <div className="overflow-x-auto no-scrollbar pb-1">
-          <div className="inline-block min-w-full align-middle">
-            <div className="p-4">
-              {/* Day Numbers Row - Aligned with cells */}
-              <div className="flex items-center mb-2">
-                <div className="sticky left-0 z-30 w-24 lg:w-28 shrink-0 bg-white"></div> {/* Sticky Spacer */}
-                <div className="sticky left-[96px] lg:left-[112px] z-20 w-8 h-4 bg-gradient-to-r from-white to-transparent pointer-events-none -ml-8"></div>
-                <div className="flex gap-2 -ml-8">
-                  {days.map((_, idx) => (
-                    <div key={idx} className="w-[18px] lg:w-5 flex items-center justify-center text-[10px] text-slate-300 font-black">
-                      {(idx + 1) % 7 === 0 || idx === 0 ? idx + 1 : ''}
+      {/* 2. Main Data Region - High Density */}
+      <div className="relative group flex-1">
+        <div className="overflow-x-auto no-scrollbar">
+          <div className="inline-block min-w-full align-middle p-5 lg:p-6">
+            <div className="flex flex-col">
+              
+              {/* Day Markers Axis */}
+              <div className="flex items-center mb-4">
+                <div className="w-24 lg:w-32 shrink-0"></div>
+                <div className="flex gap-1 lg:gap-1.5">
+                  {[1, 7, 14, 21, 28].map((num) => (
+                    <div 
+                      key={num} 
+                      style={{ marginLeft: num === 1 ? 0 : 'calc(6 * (18px + 4px))' }} 
+                      className="text-[9px] font-black text-slate-400 uppercase w-5 text-center"
+                    >
+                      D{num}
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Habit Rows */}
-              <div className="space-y-2">
+              {/* Data Grid Rows */}
+              <div className="space-y-1 lg:space-y-1.5">
                 {HABITS.map(habit => (
-                  <div key={habit.id} className="flex items-center">
-                    {/* Sticky Label (Grounded with solid background) */}
-                    <div className="sticky left-0 z-30 w-24 lg:w-28 shrink-0 flex items-center justify-end pr-3 bg-white py-0.5">
-                      <span className="text-[10px] lg:text-xs font-bold text-slate-500 whitespace-nowrap uppercase tracking-tight">
+                  <div key={habit.id} className="flex items-center group/row">
+                    {/* Sticky Column - Integrated with Row */}
+                    <div className="sticky left-0 z-30 w-24 lg:w-32 shrink-0 flex items-center justify-end pr-4 bg-white/90 backdrop-blur-md group-hover/row:bg-white transition-colors">
+                      <span className="text-[10px] lg:text-xs font-black text-slate-600 whitespace-nowrap uppercase tracking-tight group-hover/row:text-indigo-600 transition-colors">
                         {habit.label}
                       </span>
                     </div>
 
-                    {/* Smooth Left-Fade Overlay (masks grid as it slides left) */}
-                    <div className="sticky left-[96px] lg:left-[112px] z-20 w-8 h-full bg-gradient-to-r from-white to-transparent pointer-events-none -ml-8"></div>
-
-                    {/* Cells Grid */}
-                    <div className="flex gap-2 -ml-8">
+                    {/* The Grid Blocks */}
+                    <div className="flex gap-1 lg:gap-1.5 relative">
                       {days.map((day, idx) => {
                         const completed = isHabitCompleted(day.weekNumber, day.dayName, habit.id, day);
-                        
                         let isWeekendAndRest = false;
                         if (habit.id === 'gtme') {
                             isWeekendAndRest = (!day.gtmeDay || day.gtmeDay.instructions.length === 0);
@@ -107,9 +118,9 @@ export default function MonthHeatmap({
                           <div 
                             key={idx}
                             title={`${habit.label} - Day ${idx + 1}`}
-                            className={`w-[18px] h-[18px] lg:w-5 lg:h-5 rounded-sm transition-all duration-200 border-b-2 ${
-                              isWeekendAndRest ? 'bg-slate-50 border-transparent opacity-40' :
-                              completed ? 'bg-emerald-500 border-emerald-600/20' : 'bg-slate-100 border-slate-200/50'
+                            className={`w-[18px] h-[18px] lg:w-5 lg:h-5 rounded-sm transition-all duration-300 border-b border-r ${
+                              isWeekendAndRest ? 'bg-slate-50 border-slate-100 opacity-30' :
+                              completed ? 'bg-emerald-500 border-emerald-600/20' : 'bg-slate-100 border-slate-200/40'
                             }`}
                           />
                         );
@@ -122,17 +133,25 @@ export default function MonthHeatmap({
           </div>
         </div>
 
-        {/* Improved Integrated Scroll Affordance (Right Side Fade) */}
-        <div className="absolute top-0 right-0 h-full w-12 bg-gradient-to-l from-white via-white/40 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 lg:group-hover:opacity-0 transition-opacity"></div>
+        {/* Integrated Edge Fade (Affordance) */}
+        <div className="absolute top-0 right-0 h-full w-16 bg-gradient-to-l from-white via-white/20 to-transparent pointer-events-none"></div>
       </div>
 
-      {/* Footer / Caption */}
-      <div className="bg-slate-50/50 px-4 py-2 border-t border-slate-100 flex justify-between items-center">
-        <span className="text-[10px] text-slate-400 font-bold uppercase italic tracking-tighter">
-          Visualizing 28-day performance cycles
-        </span>
-        <div className="lg:hidden flex items-center gap-1 text-[10px] text-indigo-400 font-black uppercase">
-          Swipe to view more <span className="animate-pulse">→</span>
+      {/* 3. Integrated Footer - Anchored to Widget */}
+      <div className="bg-slate-900 px-5 py-3 flex justify-between items-center">
+        <div className="flex items-center gap-2">
+          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
+          <span className="text-[10px] text-slate-400 font-black uppercase tracking-widest">
+            Live Consistency Tracking
+          </span>
+        </div>
+        <div className="lg:hidden flex items-center gap-1.5">
+          <span className="text-[9px] text-indigo-400 font-black uppercase tracking-tighter">Swipe to explore cycle</span>
+          <div className="flex gap-0.5">
+             <div className="w-1 h-1 rounded-full bg-indigo-500/40"></div>
+             <div className="w-1 h-1 rounded-full bg-indigo-500/70"></div>
+             <div className="w-1 h-1 rounded-full bg-indigo-500"></div>
+          </div>
         </div>
       </div>
     </div>
