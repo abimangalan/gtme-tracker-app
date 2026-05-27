@@ -16,9 +16,13 @@ export const useProgressTracker = (user, isLocalMode) => {
       }
     } else if (user) {
       const docRef = doc(db, 'users', user.uid, 'tracker_data', 'progress_v2');
-      const unsubscribe = onSnapshot(docRef, (docSnap) => {
+      const unsubscribe = onSnapshot(docRef, { includeMetadataChanges: true }, (docSnap) => {
         if (docSnap.exists()) {
-          setCompletedItems(docSnap.data().completedItems || {});
+          const data = docSnap.data();
+          // Only update if we aren't currently writing to the cloud to avoid race conditions
+          if (!docSnap.metadata.hasPendingWrites) {
+            setCompletedItems(data.completedItems || {});
+          }
         }
       }, (error) => console.error("Cloud sync error:", error));
       return () => unsubscribe();
