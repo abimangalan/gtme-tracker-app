@@ -5,9 +5,15 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(['dist', 'dev-dist']),
   {
     files: ['**/*.{js,jsx}'],
+    rules: {
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
+      'no-unused-vars': ['error', { 'argsIgnorePattern': '^_' }],
+      'react-hooks/set-state-in-effect': 'off'
+    },
     extends: [
       js.configs.recommended,
       reactHooks.configs.flat.recommended,

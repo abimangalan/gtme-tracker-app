@@ -150,7 +150,7 @@ export const useProgressTracker = (user, isLocalMode) => {
     };
   }, [completedItems, allCombinedWeeks]);
 
-  const saveCompletedItems = async (newCompleted) => {
+  const saveCompletedItems = useCallback(async (newCompleted) => {
     setCompletedItems(newCompleted);
 
     if (isLocalMode) {
@@ -161,7 +161,7 @@ export const useProgressTracker = (user, isLocalMode) => {
         await setDoc(docRef, { completedItems: newCompleted }, { merge: true });
       } catch (error) { console.error("Cloud save error:", error); }
     }
-  };
+  }, [isLocalMode, user]);
 
   // Migration Effect: Convert legacy IDs to stable IDs
   useEffect(() => {
@@ -215,7 +215,7 @@ export const useProgressTracker = (user, isLocalMode) => {
       console.log("Migrated legacy tracker IDs to stable semantic IDs");
       saveCompletedItems(newCompleted);
     }
-  }, [allCombinedWeeks, completedItems]);
+  }, [allCombinedWeeks, completedItems, saveCompletedItems]);
 
   const toggleHabit = async (weekNumber, dayName, habitName) => {
     const id = generateHabitId(weekNumber, dayName, habitName);

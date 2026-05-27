@@ -25,6 +25,11 @@ dist-ssr
 
 .env
 
+# PWA & Dev Artifacts
+dev-dist
+*.skill
+preview-icon.html
+
 # Blueprint & Plans
 *.pdf
 swe-plan.md
