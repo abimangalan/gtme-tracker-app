@@ -44,67 +44,65 @@ export default function MonthHeatmap({
   };
 
   return (
-    <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm flex flex-col">
+    <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm flex flex-col relative z-0 isolation-isolate">
       {/* 1. Header Section - Strongly Anchored */}
-      <div className="px-5 py-4 border-b border-slate-100 bg-slate-50/30">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div>
-            <h2 className="text-sm font-black text-slate-900 uppercase tracking-widest leading-none">
+      <div className="px-4 lg:px-6 py-4 border-b border-slate-100 bg-slate-50/50">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="space-y-1">
+            <h2 className="text-xs lg:text-sm font-black text-slate-900 uppercase tracking-widest leading-none">
               Monthly Momentum
             </h2>
-            <p className="text-[10px] font-bold text-slate-400 mt-1.5 uppercase tracking-tighter">
+            <p className="text-[9px] lg:text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
               28-Day Performance Visualization
             </p>
           </div>
           
-          <div className="flex items-center gap-4 bg-white px-3 py-1.5 rounded-lg border border-slate-100 shadow-sm self-start sm:self-auto">
-             <div className="flex items-center gap-1.5">
-               <div className="w-2.5 h-2.5 rounded-sm bg-slate-200"></div>
-               <span className="text-[9px] font-black text-slate-500 uppercase">Planned</span>
+          <div className="flex items-center gap-4 bg-white px-3 py-2 rounded-lg border border-slate-100 self-start sm:self-auto">
+             <div className="flex items-center gap-2">
+               <div className="w-2 h-2 lg:w-2.5 lg:h-2.5 rounded-sm bg-slate-100 border border-slate-200"></div>
+               <span className="text-[9px] lg:text-[10px] font-black text-slate-500 uppercase">Planned</span>
              </div>
-             <div className="flex items-center gap-1.5">
-               <div className="w-2.5 h-2.5 rounded-sm bg-emerald-500"></div>
-               <span className="text-[9px] font-black text-slate-500 uppercase">Achieved</span>
+             <div className="flex items-center gap-2">
+               <div className="w-2 h-2 lg:w-2.5 lg:h-2.5 rounded-sm bg-emerald-500"></div>
+               <span className="text-[9px] lg:text-[10px] font-black text-slate-500 uppercase">Achieved</span>
              </div>
           </div>
         </div>
       </div>
       
       {/* 2. Main Data Region - High Density */}
-      <div className="relative group flex-1">
-        <div className="overflow-x-auto no-scrollbar">
-          <div className="inline-block min-w-full align-middle p-5 lg:p-6">
+      <div className="relative group overflow-hidden">
+        <div className="overflow-x-auto no-scrollbar scroll-smooth">
+          <div className="inline-block min-w-full align-middle p-4 lg:p-6">
             <div className="flex flex-col">
               
-              {/* Day Markers Axis */}
-              <div className="flex items-center mb-4">
-                <div className="w-24 lg:w-32 shrink-0"></div>
-                <div className="flex gap-1 lg:gap-1.5">
-                  {[1, 7, 14, 21, 28].map((num) => (
-                    <div 
-                      key={num} 
-                      style={{ marginLeft: num === 1 ? 0 : 'calc(6 * (18px + 4px))' }} 
-                      className="text-[9px] font-black text-slate-400 uppercase w-5 text-center"
-                    >
-                      D{num}
+              {/* Day Markers Axis - Aligned 1:1 with grid */}
+              <div className="flex items-center mb-3">
+                <div className="w-20 lg:w-28 shrink-0"></div>
+                <div className="flex gap-1 lg:gap-1.5 ml-2">
+                  {days.map((_, idx) => (
+                    <div key={idx} className="w-[18px] lg:w-5 shrink-0 flex items-center justify-center">
+                      {((idx + 1) % 7 === 1 || idx === 0) && (
+                        <span className="text-[9px] font-black text-slate-300 uppercase">D{idx + 1}</span>
+                      )}
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Data Grid Rows */}
-              <div className="space-y-1 lg:space-y-1.5">
+              <div className="space-y-1.5">
                 {HABITS.map(habit => (
                   <div key={habit.id} className="flex items-center group/row">
-                    {/* Sticky Column - Integrated with Row */}
-                    <div className="sticky left-0 z-30 w-24 lg:w-32 shrink-0 flex items-center justify-end pr-4 bg-white/90 backdrop-blur-md group-hover/row:bg-white transition-colors">
-                      <span className="text-[10px] lg:text-xs font-black text-slate-600 whitespace-nowrap uppercase tracking-tight group-hover/row:text-indigo-600 transition-colors">
+                    {/* Sticky Label - Solid Anchor */}
+                    <div className="sticky left-0 z-10 w-20 lg:w-28 shrink-0 flex items-center justify-end pr-3 bg-white py-1">
+                      <span className="text-[9px] lg:text-[11px] font-black text-slate-600 whitespace-nowrap uppercase tracking-tight group-hover/row:text-indigo-600 transition-colors">
                         {habit.label}
                       </span>
                     </div>
 
-                    {/* The Grid Blocks */}
-                    <div className="flex gap-1 lg:gap-1.5 relative">
+                    {/* Data Cells */}
+                    <div className="flex gap-1 lg:gap-1.5 ml-2">
                       {days.map((day, idx) => {
                         const completed = isHabitCompleted(day.weekNumber, day.dayName, habit.id, day);
                         let isWeekendAndRest = false;
@@ -117,10 +115,9 @@ export default function MonthHeatmap({
                         return (
                           <div 
                             key={idx}
-                            title={`${habit.label} - Day ${idx + 1}`}
-                            className={`w-[18px] h-[18px] lg:w-5 lg:h-5 rounded-sm transition-all duration-300 border-b border-r ${
-                              isWeekendAndRest ? 'bg-slate-50 border-slate-100 opacity-30' :
-                              completed ? 'bg-emerald-500 border-emerald-600/20' : 'bg-slate-100 border-slate-200/40'
+                            className={`w-[18px] h-[18px] lg:w-5 lg:h-5 rounded-sm shrink-0 transition-all duration-300 ${
+                              isWeekendAndRest ? 'bg-slate-50 border border-slate-100 opacity-40' :
+                              completed ? 'bg-emerald-500 border border-emerald-600/10 shadow-sm' : 'bg-slate-100 border border-slate-200/50 hover:border-slate-300'
                             }`}
                           />
                         );
@@ -133,24 +130,24 @@ export default function MonthHeatmap({
           </div>
         </div>
 
-        {/* Integrated Edge Fade (Affordance) */}
-        <div className="absolute top-0 right-0 h-full w-16 bg-gradient-to-l from-white via-white/20 to-transparent pointer-events-none"></div>
+        {/* Improved Integrated Side Fades (Signals scrollable content) */}
+        <div className="absolute top-0 right-0 h-full w-8 bg-gradient-to-l from-white to-transparent pointer-events-none z-20"></div>
       </div>
 
       {/* 3. Integrated Footer - Anchored to Widget */}
-      <div className="bg-slate-900 px-5 py-3 flex justify-between items-center">
+      <div className="bg-slate-900 px-4 lg:px-6 py-2.5 flex justify-between items-center mt-auto">
         <div className="flex items-center gap-2">
           <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
-          <span className="text-[10px] text-slate-400 font-black uppercase tracking-widest">
-            Live Consistency Tracking
+          <span className="text-[9px] text-slate-400 font-black uppercase tracking-widest leading-none">
+            Active Performance Pulse
           </span>
         </div>
-        <div className="lg:hidden flex items-center gap-1.5">
-          <span className="text-[9px] text-indigo-400 font-black uppercase tracking-tighter">Swipe to explore cycle</span>
-          <div className="flex gap-0.5">
-             <div className="w-1 h-1 rounded-full bg-indigo-500/40"></div>
-             <div className="w-1 h-1 rounded-full bg-indigo-500/70"></div>
-             <div className="w-1 h-1 rounded-full bg-indigo-500"></div>
+        <div className="lg:hidden flex items-center gap-2 bg-slate-800/50 px-2 py-1 rounded-md">
+          <span className="text-[8px] text-indigo-300 font-black uppercase tracking-tighter">Swipe Cycle</span>
+          <div className="flex gap-1">
+             <div className="w-1 h-1 rounded-full bg-indigo-500/30"></div>
+             <div className="w-1 h-1 rounded-full bg-indigo-500/60"></div>
+             <div className="w-1 h-1 rounded-full bg-indigo-500 animate-bounce"></div>
           </div>
         </div>
       </div>
