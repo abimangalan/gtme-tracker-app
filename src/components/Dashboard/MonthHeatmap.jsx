@@ -71,14 +71,16 @@ export default function MonthHeatmap({
       </div>
       
       {/* 2. Main Data Region - High Density */}
-      <div className="relative group overflow-hidden">
+      <div className="relative overflow-hidden">
         <div className="overflow-x-auto no-scrollbar scroll-smooth">
-          <div className="inline-block min-w-full align-middle p-4 lg:p-6">
+          <div className="inline-block min-w-full align-middle p-4 lg:p-6 pr-12 lg:pr-16">
             <div className="flex flex-col">
               
               {/* Day Markers Axis - Aligned 1:1 with grid */}
               <div className="flex items-center mb-3">
-                <div className="w-20 lg:w-28 shrink-0"></div>
+                {/* Frozen Axis Label Area */}
+                <div className="sticky left-0 z-30 w-24 lg:w-36 shrink-0 bg-gradient-to-r from-white from-80% to-transparent h-6 -mr-8 pr-8"></div>
+                
                 <div className="flex gap-1 lg:gap-1.5 ml-2">
                   {days.map((_, idx) => (
                     <div key={idx} className="w-[18px] lg:w-5 shrink-0 flex items-center justify-center">
@@ -94,8 +96,8 @@ export default function MonthHeatmap({
               <div className="space-y-1.5">
                 {HABITS.map(habit => (
                   <div key={habit.id} className="flex items-center group/row">
-                    {/* Sticky Label - Solid Anchor */}
-                    <div className="sticky left-0 z-10 w-20 lg:w-28 shrink-0 flex items-center justify-end pr-3 bg-white py-1">
+                    {/* Frozen Label Column with Fade Mask */}
+                    <div className="sticky left-0 z-30 w-24 lg:w-36 shrink-0 flex items-center justify-end pr-8 bg-gradient-to-r from-white from-80% to-transparent py-1.5 -mr-8">
                       <span className="text-[9px] lg:text-[11px] font-black text-slate-600 whitespace-nowrap uppercase tracking-tight group-hover/row:text-indigo-600 transition-colors">
                         {habit.label}
                       </span>
@@ -129,9 +131,6 @@ export default function MonthHeatmap({
             </div>
           </div>
         </div>
-
-        {/* Improved Integrated Side Fades (Signals scrollable content) */}
-        <div className="absolute top-0 right-0 h-full w-8 bg-gradient-to-l from-white to-transparent pointer-events-none z-20"></div>
       </div>
 
       {/* 3. Integrated Footer - Anchored to Widget */}
