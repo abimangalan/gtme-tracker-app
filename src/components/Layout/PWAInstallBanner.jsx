@@ -29,7 +29,7 @@ export default function PWAInstallBanner() {
   if (!showPrompt) return null;
 
   return (
-    <div className="fixed bottom-24 left-4 right-4 md:bottom-6 md:right-6 md:left-auto md:max-w-md bg-slate-900 border border-slate-800 text-white rounded-2xl shadow-2xl p-5 z-[90] animate-in fade-in slide-in-from-bottom-5 duration-300">
+    <div className="fixed bottom-24 left-4 right-4 md:bottom-6 md:right-6 md:left-auto md:max-w-md bg-slate-900 border border-slate-800 text-white rounded-2xl shadow-2xl p-5 z-[90] animate-slide-up-fade">
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1">
           <h3 className="font-bold text-sm text-slate-100 flex items-center gap-1.5">
