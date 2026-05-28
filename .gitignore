@@ -30,6 +30,12 @@ dev-dist
 *.skill
 preview-icon.html
 
+# Migration
+MIGRATION_GUIDE.md
+
+# Antigravity CLI
+.antigravitycli/
+
 # Blueprint & Plans
 *.pdf
 swe-plan.md
