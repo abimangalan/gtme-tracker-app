@@ -14,6 +14,7 @@ import HabitsView from './components/Views/HabitsView';
 import DayDetailsModal from './components/Modals/DayDetailsModal';
 import ResourcesModal from './components/Modals/ResourcesModal';
 import BottomNav from './components/Layout/BottomNav';
+import PWAInstallBanner from './components/Layout/PWAInstallBanner';
 
 export default function App() {
   const [isLocalMode, setIsLocalMode] = useState(false);
@@ -123,6 +124,7 @@ export default function App() {
       />
 
       <BottomNav />
+      <PWAInstallBanner />
     </div>
   );
 }

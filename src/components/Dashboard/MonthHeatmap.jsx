@@ -62,7 +62,7 @@ export default function MonthHeatmap({
   };
 
   return (
-    <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm flex flex-col relative z-0 isolation-isolate">
+    <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm flex flex-col relative z-0 isolate">
       {/* 1. Header Section - Strongly Anchored */}
       <div className="px-4 lg:px-6 py-4 border-b border-slate-100 bg-slate-50/50">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
