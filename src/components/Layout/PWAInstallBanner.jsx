@@ -5,8 +5,9 @@ export default function PWAInstallBanner() {
   const [showPrompt, setShowPrompt] = useState(false);
 
   useEffect(() => {
-    // 1. Detect if iOS (iPhone/iPad/iPod)
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    // 1. Detect if iOS (iPhone/iPad/iPod) or iPadOS (which Safari reports as macOS)
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
     
     // 2. Detect if already in standalone mode (running as PWA app)
     const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
