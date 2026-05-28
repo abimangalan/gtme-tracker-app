@@ -85,7 +85,10 @@ export default function MonthHeatmap({
                 Sticky axis spacer — freezes in place on mobile as the day markers scroll.
                 On desktop it is just a normal spacer (no horizontal scroll).
               */}
-              <div className="w-32 shrink-0 sticky left-0 bg-white z-10 pr-3"></div>
+              {/* Sticky axis spacer with gradient bleed into day markers */}
+              <div className="w-32 shrink-0 sticky left-0 bg-white z-10 pr-3 relative shadow-[2px_0_6px_-1px_rgba(0,0,0,0.06)]">
+                <div className="lg:hidden absolute top-0 bottom-0 left-full w-6 bg-gradient-to-r from-white to-transparent pointer-events-none"></div>
+              </div>
               
               <div className="flex gap-1 lg:gap-1.5 ml-2">
                 {days.map((_, idx) => (
@@ -108,10 +111,13 @@ export default function MonthHeatmap({
                     On desktop: no horizontal scroll so sticky never activates; behaves normally.
                     bg-white ensures it fully covers scrolling data cells beneath it.
                   */}
-                  <div className="w-32 shrink-0 sticky left-0 bg-white z-10 flex items-center justify-end pr-3 py-1.5 transition-colors">
+                  {/* Sticky label — frozen panel aesthetic with gradient fade into data grid */}
+                  <div className="w-32 shrink-0 sticky left-0 bg-white z-10 flex items-center justify-end pr-3 py-1.5 transition-colors relative shadow-[2px_0_6px_-1px_rgba(0,0,0,0.06)]">
                     <span className="text-[9px] lg:text-[11px] font-black text-slate-600 whitespace-nowrap uppercase tracking-tight lg:group-hover/row:text-indigo-600 transition-colors">
                       {habit.label}
                     </span>
+                    {/* Gradient feather from label panel into scrolling data — only on mobile */}
+                    <div className="lg:hidden absolute top-0 bottom-0 left-full w-6 bg-gradient-to-r from-white to-transparent pointer-events-none"></div>
                   </div>
 
                   {/* Data Cells */}
