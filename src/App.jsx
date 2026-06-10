@@ -11,6 +11,7 @@ import DashboardView from './components/Dashboard/DashboardView';
 import WeeklyGrid from './components/Dashboard/WeeklyGrid';
 import SweView from './components/Views/SweView';
 import HabitsView from './components/Views/HabitsView';
+import KnowledgeCapsulesView from './components/KnowledgeCapsules/KnowledgeCapsulesView';
 import DayDetailsModal from './components/Modals/DayDetailsModal';
 import ResourcesModal from './components/Modals/ResourcesModal';
 import BottomNav from './components/Layout/BottomNav';
@@ -105,6 +106,9 @@ export default function App() {
               completedItems={tracker.completedItems}
               toggleHabit={tracker.toggleHabit}
             />
+          } />
+          <Route path="/capsules" element={
+            <KnowledgeCapsulesView user={auth.user} />
           } />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

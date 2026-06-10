@@ -1,18 +1,18 @@
-import { ExternalLink, Trash2, Youtube, Linkedin, FileText, Globe } from 'lucide-react';
+import { ExternalLink, Trash2, PlayCircle, Briefcase, FileText, Globe } from 'lucide-react';
 
 const CATEGORY_STYLES = {
   youtube: {
     bg: 'bg-white',
     border: 'border-rose-200',
     badge: 'bg-rose-100 text-rose-700',
-    icon: <Youtube size={12} />,
+    icon: <PlayCircle size={12} />,
     label: 'YouTube'
   },
   linkedin: {
     bg: 'bg-white',
     border: 'border-blue-200',
     badge: 'bg-blue-100 text-blue-700',
-    icon: <Linkedin size={12} />,
+    icon: <Briefcase size={12} />,
     label: 'LinkedIn'
   },
   article: {

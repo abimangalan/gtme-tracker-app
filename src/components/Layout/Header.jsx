@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import { Trophy, Bookmark, Printer, LogOut, Code, Flame, LayoutDashboard, ListChecks, CheckCircle2 } from 'lucide-react';
+import { Trophy, Bookmark, Printer, LogOut, Code, Flame, LayoutDashboard, ListChecks, CheckCircle2, BookMarked } from 'lucide-react';
 
 export default function Header({ isLocalMode, user, progress, streak, setShowResources, handleLogout }) {
   const location = useLocation();
@@ -74,11 +74,17 @@ export default function Header({ isLocalMode, user, progress, streak, setShowRes
           >
             <Code size={18} /> SWE Track
           </NavLink>
-          <NavLink 
-            to="/habits" 
+          <NavLink
+            to="/habits"
             className={({ isActive }) => `flex items-center gap-2 py-3 border-b-2 font-bold text-sm transition-all ${isActive ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300'}`}
           >
             <CheckCircle2 size={18} /> Daily Habits
+          </NavLink>
+          <NavLink
+            to="/capsules"
+            className={({ isActive }) => `flex items-center gap-2 py-3 border-b-2 font-bold text-sm transition-all ${isActive ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300'}`}
+          >
+            <BookMarked size={18} /> Knowledge
           </NavLink>
         </div>
         

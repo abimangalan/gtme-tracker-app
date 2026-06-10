@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Plus, Youtube, Linkedin, FileText, Globe, BookMarked, Loader2 } from 'lucide-react';
+import { Plus, PlayCircle, Briefcase, FileText, Globe, BookMarked, Loader2 } from 'lucide-react';
 import { useKnowledgeCapsules } from '../../hooks/useKnowledgeCapsules';
 import CapsuleCard from './CapsuleCard';
 import AddCapsuleModal from './AddCapsuleModal';
@@ -8,7 +8,7 @@ const SWIMLANES = [
   {
     key: 'youtube',
     label: 'YouTube',
-    icon: Youtube,
+    icon: PlayCircle,
     headerBg: 'bg-rose-600',
     sectionBg: 'bg-rose-50/50',
     borderColor: 'border-rose-200'
@@ -16,7 +16,7 @@ const SWIMLANES = [
   {
     key: 'linkedin',
     label: 'LinkedIn',
-    icon: Linkedin,
+    icon: Briefcase,
     headerBg: 'bg-blue-600',
     sectionBg: 'bg-blue-50/50',
     borderColor: 'border-blue-200'
