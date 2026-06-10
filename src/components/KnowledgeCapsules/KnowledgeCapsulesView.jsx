@@ -3,6 +3,7 @@ import { Plus, PlayCircle, Briefcase, FileText, Globe, BookMarked, Loader2 } fro
 import { useKnowledgeCapsules } from '../../hooks/useKnowledgeCapsules';
 import CapsuleCard from './CapsuleCard';
 import AddCapsuleModal from './AddCapsuleModal';
+import TrackResources from './TrackResources';
 
 const SWIMLANES = [
   {
@@ -141,6 +142,11 @@ export default function KnowledgeCapsulesView({ user }) {
           </div>
         );
       })}
+
+      {/* Divider before reference library */}
+      <div className="pt-2">
+        <TrackResources />
+      </div>
 
       {showModal && (
         <AddCapsuleModal

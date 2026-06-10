@@ -40,3 +40,6 @@ MIGRATION_GUIDE.md
 *.pdf
 swe-plan.md
 parse_swe.cjs
+
+# Local Netlify folder
+.netlify
