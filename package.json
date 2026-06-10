@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host",
+    "dev": "echo '\\n  LifeOS dev server\\n  Open: http://localhost:8888\\n  (ignore the :5173 line below — that is Vite internal, no functions there)\\n' && netlify dev",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -17,6 +17,7 @@
     "react-router-dom": "^7.15.1"
   },
   "devDependencies": {
+    "netlify-cli": "^17.0.0",
     "@eslint/js": "^10.0.1",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",

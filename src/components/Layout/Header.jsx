@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import { Trophy, Bookmark, Printer, LogOut, Code, Flame, LayoutDashboard, ListChecks, CheckCircle2 } from 'lucide-react';
+import { Trophy, Printer, LogOut, Code, Flame, LayoutDashboard, ListChecks, CheckCircle2, BookMarked } from 'lucide-react';
 
-export default function Header({ isLocalMode, user, progress, streak, setShowResources, handleLogout }) {
+export default function Header({ isLocalMode, user, progress, streak, handleLogout }) {
   const location = useLocation();
   const path = location.pathname;
 
@@ -42,9 +42,6 @@ export default function Header({ isLocalMode, user, progress, streak, setShowRes
             <div className="text-xs lg:text-sm font-medium text-slate-600 hidden md:block">
               <span className="text-slate-900">{user.email}</span>
             </div>
-            <button onClick={() => setShowResources(true)} className="flex items-center gap-1 lg:gap-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 p-2 lg:px-3 lg:py-2 rounded-md text-xs lg:text-sm font-medium transition-colors">
-              <Bookmark size={16} /> <span className="hidden lg:inline">Resources</span>
-            </button>
             <button onClick={() => window.print()} className="hidden sm:flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-2 rounded-md text-sm font-medium transition-colors">
               <Printer size={16} /> <span className="hidden lg:inline">Print</span>
             </button>
@@ -74,11 +71,17 @@ export default function Header({ isLocalMode, user, progress, streak, setShowRes
           >
             <Code size={18} /> SWE Track
           </NavLink>
-          <NavLink 
-            to="/habits" 
+          <NavLink
+            to="/habits"
             className={({ isActive }) => `flex items-center gap-2 py-3 border-b-2 font-bold text-sm transition-all ${isActive ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300'}`}
           >
             <CheckCircle2 size={18} /> Daily Habits
+          </NavLink>
+          <NavLink
+            to="/capsules"
+            className={({ isActive }) => `flex items-center gap-2 py-3 border-b-2 font-bold text-sm transition-all ${isActive ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300'}`}
+          >
+            <BookMarked size={18} /> Knowledge
           </NavLink>
         </div>
         

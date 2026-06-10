@@ -37,20 +37,21 @@ export const useAuth = (isLocalMode, setIsLocalMode, setCompletedItems) => {
   }, [isLocalMode]);
 
   const handleLogin = async () => {
-    // Detect PWA standalone mode
-    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
-    
     try {
-      if (isStandalone) {
-        // iOS standalone apps block popup windows, so we redirect the entire PWA window
-        await signInWithRedirect(auth, googleProvider);
-      } else {
-        // Regular browser tabs use the clean popup window authentication
-        await signInWithPopup(auth, googleProvider);
+      // signInWithPopup works in all modern browsers including iOS 16.4+ PWA.
+      // It avoids the Safari ITP cross-origin storage block that causes sign-in
+      // loops when signInWithRedirect passes through firebaseapp.com.
+      await signInWithPopup(auth, googleProvider);
+    } catch (error) {
+      if (error.code === 'auth/popup-blocked') {
+        // Genuine popup block (very old iOS PWA < 16.4) — fall back to redirect
+        await signInWithRedirect(auth, googleProvider).catch(e => console.error('Login failed', e));
+      } else if (
+        error.code !== 'auth/popup-closed-by-user' &&
+        error.code !== 'auth/cancelled-popup-request'
+      ) {
+        console.error('Login failed', error);
       }
-    } 
-    catch (error) { 
-      console.error("Login failed", error); 
     }
   };
 
