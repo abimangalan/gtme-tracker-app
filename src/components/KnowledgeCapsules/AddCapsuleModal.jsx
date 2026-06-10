@@ -1,5 +1,16 @@
 import { useState } from 'react';
-import { X, Link2, Loader2, Sparkles, AlertCircle, Save } from 'lucide-react';
+import { X, Link2, Loader2, Sparkles, AlertCircle, Save, BookMarked } from 'lucide-react';
+
+function detectCategory(url) {
+  try {
+    const host = new URL(url).hostname.replace('www.', '');
+    if (host === 'youtube.com' || host === 'youtu.be') return 'youtube';
+    if (host === 'linkedin.com') return 'linkedin';
+    return 'article';
+  } catch {
+    return 'other';
+  }
+}
 
 export default function AddCapsuleModal({ onClose, onSave }) {
   const [step, setStep] = useState('input'); // 'input' | 'loading' | 'preview' | 'error'
@@ -22,7 +33,13 @@ export default function AddCapsuleModal({ onClose, onSave }) {
         body: JSON.stringify({ url: url.trim() })
       });
 
-      const data = await res.json();
+      const text = await res.text();
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch {
+        throw new Error(`Server returned non-JSON (status ${res.status}). Is netlify dev running with GEMINI_API_KEY set in .env?`);
+      }
       if (!res.ok) throw new Error(data.error || 'Failed to process URL');
 
       setPreview(data);
@@ -111,12 +128,41 @@ export default function AddCapsuleModal({ onClose, onSave }) {
 
           {/* Error */}
           {step === 'error' && (
-            <div className="flex items-start gap-2 bg-red-50 border border-red-200 rounded-xl p-3 text-sm text-red-700">
-              <AlertCircle size={16} className="shrink-0 mt-0.5" />
-              <div className="flex-1">
-                <p>{errorMsg}</p>
-                <button onClick={handleRetry} className="text-red-600 underline text-xs mt-1 font-bold">Try again</button>
+            <div className="space-y-2">
+              <div className="flex items-start gap-2 bg-red-50 border border-red-200 rounded-xl p-3 text-sm text-red-700">
+                <AlertCircle size={16} className="shrink-0 mt-0.5" />
+                <div className="flex-1">
+                  <p>{errorMsg}</p>
+                  <button onClick={handleRetry} className="text-red-600 underline text-xs mt-1 font-bold">Try again</button>
+                </div>
               </div>
+              {url && (
+                <button
+                  onClick={async () => {
+                    setSaving(true);
+                    try {
+                      const parsedUrl = new URL(url.trim());
+                      const domain = parsedUrl.hostname.replace('www.', '');
+                      await onSave({
+                        url: url.trim(),
+                        title: domain,
+                        summary: '',
+                        category: detectCategory(url.trim()),
+                        thumbnail: null,
+                        domain
+                      });
+                      onClose();
+                    } catch {
+                      setSaving(false);
+                    }
+                  }}
+                  disabled={saving}
+                  className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold border-2 border-dashed border-slate-300 text-slate-500 hover:border-indigo-400 hover:text-indigo-600 transition-colors"
+                >
+                  {saving ? <Loader2 size={14} className="animate-spin" /> : <BookMarked size={14} />}
+                  Save link without AI summary
+                </button>
+              )}
             </div>
           )}
 
